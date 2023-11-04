@@ -28,12 +28,28 @@ class IntroWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(child: Text('Weather App')),
+        body: SafeArea(
+      child: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.fromARGB(255, 10, 58, 214),
+            Color.fromARGB(255, 22, 20, 129),
           ],
-        ));
+        )),
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                'data',
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));
   }
 }
