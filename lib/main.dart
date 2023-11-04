@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,13 +40,18 @@ class IntroWidget extends StatelessWidget {
             Color.fromARGB(255, 22, 20, 129),
           ],
         )),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             Center(
-              child: Text(
-                'data',
-              ),
+              child: Text('WEATHER APP',
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 32,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  )),
             ),
           ],
         ),
