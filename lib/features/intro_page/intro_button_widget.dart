@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/features/search_page/search_page_widget.dart';
 
+
 class IntroButton extends StatelessWidget {
   const IntroButton({
     super.key,
@@ -35,8 +36,7 @@ class IntroButton extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: ElevatedButton.icon(
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => const SearchCity()));
+            Navigator.of(context).push(createRoute());
           },
           style: ElevatedButton.styleFrom(
               minimumSize: const Size.fromHeight(50),
@@ -56,3 +56,26 @@ class IntroButton extends StatelessWidget {
     );
   }
 }
+
+
+Route createRoute() {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          const SearchCity(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1, 0);
+        const end = Offset.zero;
+        const curve = Curves.fastOutSlowIn;
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      });
+}
+
+
