@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/features/weather_page/weather_widget.dart';
 
 class SearchCity extends StatelessWidget {
   const SearchCity({
@@ -39,7 +40,8 @@ class SearchCity extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
-                        style: const TextStyle(color: Colors.white70, fontSize: 22),
+                        style: const TextStyle(
+                            color: Colors.white70, fontSize: 22),
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -57,6 +59,12 @@ class SearchCity extends StatelessWidget {
                             hintStyle: const TextStyle(
                                 color: Colors.white60, fontSize: 22))),
                   ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: ((context) => WeatherWidget())));
+                      },
+                      child: Text('Dalej'))
                 ],
               ),
             ),
