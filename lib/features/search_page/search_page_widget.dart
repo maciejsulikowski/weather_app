@@ -39,16 +39,23 @@ class SearchCity extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
+                        style: const TextStyle(color: Colors.white70, fontSize: 22),
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
                               borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(color: Colors.white)),
-                            hintText: 'Write city you want',
-                            hintStyle: const TextStyle(color: Colors.white54))),
+                                borderSide:
+                                    const BorderSide(color: Colors.white)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    const BorderSide(color: Colors.white70)),
+                            hintText: 'Write city you want...',
+                            hintStyle: const TextStyle(
+                                color: Colors.white60, fontSize: 22))),
                   ),
                 ],
               ),
