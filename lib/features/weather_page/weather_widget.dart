@@ -10,9 +10,10 @@ class WeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
         body: SafeArea(
-          child: Container(
+      child: ListView(
+        children: [
+          Container(
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -37,7 +38,9 @@ class WeatherWidget extends StatelessWidget {
                             color: Colors.white,
                           ),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
                               icon: const Icon(Icons.arrow_back)),
                         ),
                         Text('City',
@@ -57,17 +60,17 @@ class WeatherWidget extends StatelessWidget {
                         )
                       ]),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
-                  Text('Sunny',
+                  Text('Sunny-raining',
                       style: GoogleFonts.aBeeZee(
                         fontSize: 18,
                         color: Colors.white,
                       )),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
-                  Container(
+                  SizedBox(
                     height: 350,
                     width: 250,
                     child: Stack(
@@ -89,10 +92,127 @@ class WeatherWidget extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text('Monday, 10 October | 10:00',
+                      style: GoogleFonts.aBeeZee(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color.fromARGB(255, 5, 36, 136),
+                              Color.fromARGB(255, 47, 46, 128),
+                            ],
+                          )),
+                      width: double.infinity,
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.all(10),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          RainFallWidget(
+                            name: 'Rainfall',
+                            number: '20 %',
+                            iconLink: 'images/water.png',
+                          ),
+                          RainFallWidget(
+                            name: 'Humidity',
+                            number: '20 %',
+                            iconLink: 'images/termometer.png',
+                          ),
+                          RainFallWidget(
+                            name: 'Wind',
+                            number: '10 km/h',
+                            iconLink: 'images/wind.png',
+                          ),
+                        ],
+                      )),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Today',
+                            style: GoogleFonts.aBeeZee(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        Text('7-days Weather',
+                            style: GoogleFonts.aBeeZee(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             ),
           ),
-        ));
+        ],
+      ),
+    ));
+  }
+}
+
+class RainFallWidget extends StatelessWidget {
+  const RainFallWidget({
+    super.key,
+    required this.name,
+    required this.number,
+    required this.iconLink,
+  });
+
+  final String name;
+  final String number;
+  final String iconLink;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+            height: 70,
+            child: Image.asset(
+              iconLink,
+            )),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(number,
+            style: GoogleFonts.aBeeZee(
+              fontSize: 12,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            )),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(name,
+            style: GoogleFonts.aBeeZee(
+              fontSize: 16,
+              color: Colors.white,
+            )),
+      ],
+    );
   }
 }
