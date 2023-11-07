@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
+import 'package:weather_app/features/weather_page/animation_weather_widget.dart';
+import 'package:weather_app/features/weather_page/basic_information_weather_widget.dart';
+import 'package:weather_app/features/weather_page/days_widget.dart';
+import 'package:weather_app/features/weather_page/text_around_details_widget.dart';
 
 class WeatherWidget extends StatelessWidget {
   const WeatherWidget({
@@ -70,28 +73,7 @@ class WeatherWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  SizedBox(
-                    height: 350,
-                    width: 250,
-                    child: Stack(
-                      children: [
-                        Text('27°C',
-                            style: GoogleFonts.aBeeZee(
-                              fontSize: 96,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        Positioned(
-                          top: 80,
-                          child: Container(
-                            child: Lottie.asset(
-                              'images/animation_2.json',
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  const AnimationWeatherWidget(),
                   const SizedBox(
                     height: 10,
                   ),
@@ -104,105 +86,15 @@ class WeatherWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Color.fromARGB(255, 5, 36, 136),
-                              Color.fromARGB(255, 47, 46, 128),
-                            ],
-                          )),
-                      width: double.infinity,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      padding: const EdgeInsets.all(10),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          RainFallWidget(
-                            name: 'Rainfall',
-                            number: '20 %',
-                            iconLink: 'images/water.png',
-                          ),
-                          RainFallWidget(
-                            name: 'Humidity',
-                            number: '20 %',
-                            iconLink: 'images/termometer.png',
-                          ),
-                          RainFallWidget(
-                            name: 'Wind',
-                            number: '10 km/h',
-                            iconLink: 'images/wind.png',
-                          ),
-                        ],
-                      )),
+                  const BasicInformationWeatherWidget(),
                   const SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Today',
-                            style: GoogleFonts.aBeeZee(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        Text('7-days Weather',
-                            style: GoogleFonts.aBeeZee(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            )),
-                      ],
-                    ),
-                  ),
+                  const TextAroundDetailsWidget(),
                   const SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              ColumnWeatherWidget(),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ColumnWeatherWidget(),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ColumnWeatherWidget(),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ColumnWeatherWidget(),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ColumnWeatherWidget(),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ColumnWeatherWidget(),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ColumnWeatherWidget(),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
+                  const DaysWidget()
                 ],
               ),
             ),
@@ -210,92 +102,5 @@ class WeatherWidget extends StatelessWidget {
         ],
       ),
     ));
-  }
-}
-
-class ColumnWeatherWidget extends StatelessWidget {
-  const ColumnWeatherWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 5, 36, 136),
-              Color.fromARGB(255, 47, 46, 128),
-            ],
-          )),
-      child: Column(
-        children: [
-          Text('10 AM',
-              style: GoogleFonts.aBeeZee(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              )),
-          SizedBox(
-            height: 70,
-            child: Image.asset(
-              'images/water.png',
-            ),
-          ),
-          Text('27°C',
-              style: GoogleFonts.aBeeZee(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              )),
-        ],
-      ),
-    );
-  }
-}
-
-class RainFallWidget extends StatelessWidget {
-  const RainFallWidget({
-    super.key,
-    required this.name,
-    required this.number,
-    required this.iconLink,
-  });
-
-  final String name;
-  final String number;
-  final String iconLink;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-            height: 70,
-            child: Image.asset(
-              iconLink,
-            )),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(number,
-            style: GoogleFonts.aBeeZee(
-              fontSize: 12,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            )),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(name,
-            style: GoogleFonts.aBeeZee(
-              fontSize: 16,
-              color: Colors.white,
-            )),
-      ],
-    );
   }
 }

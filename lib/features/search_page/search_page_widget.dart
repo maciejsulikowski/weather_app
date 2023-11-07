@@ -59,12 +59,44 @@ class SearchCity extends StatelessWidget {
                             hintStyle: const TextStyle(
                                 color: Colors.white60, fontSize: 22))),
                   ),
-                  ElevatedButton(
+                  const SizedBox(height: 20),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color.fromRGBO(143, 165, 255, 1),
+                            Color.fromRGBO(10, 53, 132, 1),
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(25.0),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 4,
+                            blurRadius: 10,
+                            offset: const Offset(0, 3),
+                          )
+                        ]),
+                    child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => WeatherWidget())));
+                            builder: ((context) => const WeatherWidget())));
                       },
-                      child: Text('Dalej'))
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          shadowColor: Colors.transparent),
+                      child: Text('Search 🔍 ',
+                          style: GoogleFonts.aBeeZee(
+                            fontSize: 18,
+                            color: Colors.white,
+                          )),
+                    ),
+                  ),
                 ],
               ),
             ),
