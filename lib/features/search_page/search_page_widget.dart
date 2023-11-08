@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/features/weather_page/weather_widget.dart';
@@ -9,11 +10,14 @@ class SearchCity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List list = <String>[
-      'Moskwa',
-      'Warszawa',
-      'Gdańsk',
-    ];
+    final List list = <String>['Moskwa', 'Warszawa', 'Gdańsk', 'Olsztyn'];
+    final String isHavingThreeChars;
+
+    Future<void> apiCall(String city) async {
+      final response = await Dio().get<dynamic>(
+          'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=310f71ed85a8893ac02f723c86324a4c');
+      return response.data;
+    }
 
     return Scaffold(
         appBar: AppBar(),
@@ -46,6 +50,11 @@ class SearchCity extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
+                        onChanged: (value) {
+                          if (value.length < 3) {
+                            
+                          }
+                        },
                         style: const TextStyle(
                             color: Colors.white70, fontSize: 22),
                         decoration: InputDecoration(
@@ -70,10 +79,25 @@ class SearchCity extends StatelessWidget {
                     child: ListView.builder(
                         itemCount: list.length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(list[index]),
-                            leading: const Icon(Icons.location_city),
-                            trailing: const Icon(Icons.location_city),
+                          return InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const WeatherWidget()));
+                              apiCall(list[index]);
+                            },
+                            child: ListTile(
+                              title: Text(list[index],
+                                  style: GoogleFonts.aBeeZee(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  )),
+                              leading: const CircleAvatar(
+                                  child: Icon(Icons.location_city)),
+                              trailing: const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                              ),
+                            ),
                           );
                         }),
                   )
