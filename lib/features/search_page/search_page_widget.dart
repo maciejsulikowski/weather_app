@@ -9,6 +9,12 @@ class SearchCity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List list = <String>[
+      'Moskwa',
+      'Warszawa',
+      'Gdańsk',
+    ];
+
     return Scaffold(
         appBar: AppBar(),
         body: SafeArea(
@@ -60,43 +66,54 @@ class SearchCity extends StatelessWidget {
                                 color: Colors.white60, fontSize: 22))),
                   ),
                   const SizedBox(height: 20),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color.fromRGBO(143, 165, 255, 1),
-                            Color.fromRGBO(10, 53, 132, 1),
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(25.0),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            spreadRadius: 4,
-                            blurRadius: 10,
-                            offset: const Offset(0, 3),
-                          )
-                        ]),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => const WeatherWidget())));
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.transparent,
-                          shadowColor: Colors.transparent),
-                      child: Text('Search 🔍 ',
-                          style: GoogleFonts.aBeeZee(
-                            fontSize: 18,
-                            color: Colors.white,
-                          )),
-                    ),
-                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(list[index]),
+                            leading: const Icon(Icons.location_city),
+                            trailing: const Icon(Icons.location_city),
+                          );
+                        }),
+                  )
+                  // Container(
+                  //   margin: const EdgeInsets.symmetric(horizontal: 20),
+                  //   decoration: BoxDecoration(
+                  //       gradient: const LinearGradient(
+                  //         colors: [
+                  //           Color.fromRGBO(143, 165, 255, 1),
+                  //           Color.fromRGBO(10, 53, 132, 1),
+                  //         ],
+                  //         begin: Alignment.centerLeft,
+                  //         end: Alignment.centerRight,
+                  //       ),
+                  //       borderRadius: const BorderRadius.all(
+                  //         Radius.circular(25.0),
+                  //       ),
+                  //       boxShadow: [
+                  //         BoxShadow(
+                  //           color: Colors.black.withOpacity(0.1),
+                  //           spreadRadius: 4,
+                  //           blurRadius: 10,
+                  //           offset: const Offset(0, 3),
+                  //         )
+                  //       ]),
+
+                  // child: ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.of(context).push(MaterialPageRoute(
+                  //         builder: ((context) => const WeatherWidget())));
+                  //   },
+                  //   style: ElevatedButton.styleFrom(
+                  //       backgroundColor: Colors.transparent,
+                  //       shadowColor: Colors.transparent),
+                  //   child: Text('Search 🔍 ',
+                  //       style: GoogleFonts.aBeeZee(
+                  //         fontSize: 18,
+                  //         color: Colors.white,
+                  //       )),
+                  // ),
                 ],
               ),
             ),
