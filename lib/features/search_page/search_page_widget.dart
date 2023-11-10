@@ -13,12 +13,20 @@ class SearchCity extends StatefulWidget {
   State<SearchCity> createState() => _SearchCityState();
 }
 
+bool isButtonClicked = false;
+
 class _SearchCityState extends State<SearchCity> {
   @override
   Widget build(BuildContext context) {
-    final List<SearchModel> listS;
+    void toogleButton() {
+      setState(() {
+        isButtonClicked = !isButtonClicked;
+      });
+    }
+
     final List list = [
       'Moskwa',
+      'Olsztyn',
     ];
 
     Future<SearchModel?> apiCall(String city) async {
@@ -87,32 +95,6 @@ class _SearchCityState extends State<SearchCity> {
                                 color: Colors.white60, fontSize: 22))),
                   ),
                   const SizedBox(height: 20),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: list.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const WeatherWidget()));
-                              apiCall(list[index]);
-                            },
-                            child: ListTile(
-                              title: Text(list[index],
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 24,
-                                    color: Colors.white,
-                                  )),
-                              leading: const CircleAvatar(
-                                  child: Icon(Icons.location_city)),
-                              trailing: const Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
@@ -137,7 +119,7 @@ class _SearchCityState extends State<SearchCity> {
                         ]),
                     child: ElevatedButton(
                       onPressed: () {
-                        // apiCall(city)
+                        toogleButton();
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,
@@ -149,6 +131,39 @@ class _SearchCityState extends State<SearchCity> {
                           )),
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  if (isButtonClicked == false) ...[
+                    const Expanded(child: Text('Nic nie ma')),
+                  ],
+                  if (isButtonClicked == true) ...[
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: list.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const WeatherWidget()));
+                                // apiCall(list[index]);
+                              },
+                              child: ListTile(
+                                title: Text(list[index],
+                                    style: GoogleFonts.aBeeZee(
+                                      fontSize: 24,
+                                      color: Colors.white,
+                                    )),
+                                leading: const CircleAvatar(
+                                    child: Icon(Icons.location_city)),
+                                trailing: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          }),
+                    )
+                  ],
                 ],
               ),
             ),
