@@ -145,7 +145,6 @@ class _SearchCityState extends State<SearchCity> {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
                                         const WeatherWidget()));
-                                // apiCall(list[index]);
                               },
                               child: ListTile(
                                 title: Text(list[index],
