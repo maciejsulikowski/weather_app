@@ -132,9 +132,7 @@ class _SearchCityState extends State<SearchCity> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  if (isButtonClicked == false) ...[
-                    const Expanded(child: Text('Nic nie ma')),
-                  ],
+                  if (isButtonClicked == false) ...[],
                   if (isButtonClicked == true) ...[
                     Expanded(
                       child: ListView.builder(
