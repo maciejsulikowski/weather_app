@@ -1,10 +1,9 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app/domain/models/search_model.dart';
-import 'package:weather_app/features/search_page/cubit/search_page_cubit.dart';
-import 'package:weather_app/features/weather_page/weather_widget.dart';
+import 'package:weather_app/app/features/search_page/cubit/search_page_cubit.dart';
+import 'package:weather_app/app/features/weather_page/weather_widget.dart';
 
 class SearchCity extends StatefulWidget {
   const SearchCity({
@@ -15,6 +14,7 @@ class SearchCity extends StatefulWidget {
   State<SearchCity> createState() => _SearchCityState();
 }
 
+final TextEditingController controller = TextEditingController();
 bool isButtonClicked = false;
 
 class _SearchCityState extends State<SearchCity> {
@@ -31,19 +31,7 @@ class _SearchCityState extends State<SearchCity> {
       'Olsztyn',
     ];
 
-    Future<SearchModel?> apiCall(String city) async {
-      final response = await Dio().get<Map<String, dynamic>>(
-          'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=310f71ed85a8893ac02f723c86324a4c');
-      final responseData = response.data;
-      if (responseData == null) {
-        return null;
-      }
-
-      final id = responseData['main']['temp'] as int;
-      final name = responseData['name'] as String;
-
-      return SearchModel(id: id, name: name);
-    }
+    
 
     return BlocProvider(
       create: (context) => SearchPageCubit(),
@@ -80,7 +68,7 @@ class _SearchCityState extends State<SearchCity> {
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
-                              onChanged: (value) {},
+                              controller: controller,
                               style: const TextStyle(
                                   color: Colors.white70, fontSize: 22),
                               decoration: InputDecoration(

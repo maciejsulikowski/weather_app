@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/features/weather_page/column_weather_widget.dart';
+import 'package:weather_app/app/features/weather_page/column_weather_widget.dart';
 
 class DaysWidget extends StatelessWidget {
   const DaysWidget({
@@ -10,7 +10,7 @@ class DaysWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: const Column(
+      child:  const Column(
         children: [
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app/features/search_page/search_page_widget.dart';
+import 'package:weather_app/app/features/search_page/search_page_widget.dart';
 
 
 class IntroButton extends StatelessWidget {

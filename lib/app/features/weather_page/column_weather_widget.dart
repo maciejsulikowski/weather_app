@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app/features/weather_page/details_widget.dart';
-import 'package:weather_app/features/weather_page/weather_widget.dart';
+import 'package:weather_app/app/features/weather_page/details_widget.dart';
 
 class ColumnWeatherWidget extends StatelessWidget {
   const ColumnWeatherWidget({

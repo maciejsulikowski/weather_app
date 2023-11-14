@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:weather_app/features/intro_page/intro_button_widget.dart';
-import 'package:weather_app/features/search_page/search_page_widget.dart';
+import 'package:weather_app/app/features/intro_page/intro_button_widget.dart';
 
 class IntroWidget extends StatefulWidget {
   const IntroWidget({
@@ -79,6 +78,10 @@ class _IntroWidgetState extends State<IntroWidget> {
                   height: 30,
                 ),
                 const IntroButton(),
+                // ElevatedButton(
+                //   child: Text('Contact us'),
+                //   onPressed: () => returnprint('Contact us'),
+                // )
               ],
             ),
           ),

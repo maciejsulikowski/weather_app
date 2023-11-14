@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:weather_app/domain/models/search_model.dart';
+import 'package:weather_app/app/domain/models/search_model.dart';
 
 part 'search_page_state.dart';
 

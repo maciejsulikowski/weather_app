@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/features/weather_page/rainfall_widget.dart';
+import 'package:weather_app/app/features/weather_page/rainfall_widget.dart';
 
 class BasicInformationWeatherWidget extends StatelessWidget {
   const BasicInformationWeatherWidget({
@@ -22,7 +22,7 @@ class BasicInformationWeatherWidget extends StatelessWidget {
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 20),
         padding: const EdgeInsets.all(10),
-        child: const Row(
+        child:  const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             RainFallWidget(

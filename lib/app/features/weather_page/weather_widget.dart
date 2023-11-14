@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app/features/weather_page/animation_weather_widget.dart';
-import 'package:weather_app/features/weather_page/basic_information_weather_widget.dart';
-import 'package:weather_app/features/weather_page/days_widget.dart';
-import 'package:weather_app/features/weather_page/text_around_details_widget.dart';
+import 'package:weather_app/app/features/weather_page/animation_weather_widget.dart';
+import 'package:weather_app/app/features/weather_page/basic_information_weather_widget.dart';
+import 'package:weather_app/app/features/weather_page/days_widget.dart';
+import 'package:weather_app/app/features/weather_page/text_around_details_widget.dart';
 
 class WeatherWidget extends StatelessWidget {
   const WeatherWidget({
