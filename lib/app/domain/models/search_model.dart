@@ -14,6 +14,7 @@ class SearchModel {
         name = json['LocalizedName'],
         country = json['Country']['LocalizedName'];
 
+
   Map toJson() {
     return {'id': id, 'name': name, 'country' : country};
   }

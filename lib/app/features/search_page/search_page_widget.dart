@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/domain/models/search_model.dart';
+import 'package:weather_app/app/domain/repositories/search_repository.dart';
 import 'package:weather_app/app/features/search_page/cubit/search_page_cubit.dart';
 import 'package:weather_app/app/features/weather_page/weather_widget.dart';
 
@@ -31,10 +32,8 @@ class _SearchCityState extends State<SearchCity> {
       'Olsztyn',
     ];
 
-    
-
     return BlocProvider(
-      create: (context) => SearchPageCubit(),
+      create: (context) => SearchPageCubit(SearchRepository()),
       child: BlocBuilder<SearchPageCubit, SearchPageState>(
         builder: (context, state) {
           return Scaffold(
@@ -114,6 +113,9 @@ class _SearchCityState extends State<SearchCity> {
                               ]),
                           child: ElevatedButton(
                             onPressed: () {
+                              context
+                                  .read<SearchPageCubit>()
+                                  .searchCity(controller.text);
                               toogleButton();
                             },
                             style: ElevatedButton.styleFrom(
@@ -127,35 +129,56 @@ class _SearchCityState extends State<SearchCity> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        if (isButtonClicked == false) ...[],
+                        if (isButtonClicked == false) ...[Text('data')],
                         if (isButtonClicked == true) ...[
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: list.length,
-                                itemBuilder: (context, index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const WeatherWidget()));
-                                    },
-                                    child: ListTile(
-                                      title: Text(list[index],
-                                          style: GoogleFonts.aBeeZee(
-                                            fontSize: 24,
-                                            color: Colors.white,
-                                          )),
-                                      leading: const CircleAvatar(
-                                          child: Icon(Icons.location_city)),
-                                      trailing: const Icon(
-                                        Icons.arrow_forward,
-                                        color: Colors.white,
-                                      ),
+                          Text('ds'),
+                          Column(
+                            children: [
+                              if (state.cities != null)
+                                for (var city in state.cities!) ...[
+                                  ListTile(
+                                    title: Text(city.name,
+                                        style: GoogleFonts.aBeeZee(
+                                          fontSize: 24,
+                                          color: Colors.white,
+                                        )),
+                                    leading: const CircleAvatar(
+                                        child: Icon(Icons.location_city)),
+                                    trailing: const Icon(
+                                      Icons.arrow_forward,
+                                      color: Colors.white,
                                     ),
-                                  );
-                                }),
+                                  ),
+                                ],
+                            ],
                           )
+                          // Expanded(
+                          //   child: ListView.builder(
+                          //       itemCount: state.cities,
+                          //       itemBuilder: (context, index) {
+                          //         return InkWell(
+                          //           onTap: () {
+                          //             Navigator.of(context).push(
+                          //                 MaterialPageRoute(
+                          //                     builder: (context) =>
+                          //                         const WeatherWidget()));
+                          //           },
+                          // child: ListTile(
+                          //   title: Text(searchModel[index],
+                          //       style: GoogleFonts.aBeeZee(
+                          //         fontSize: 24,
+                          //         color: Colors.white,
+                          //       )),
+                          //   leading: const CircleAvatar(
+                          //       child: Icon(Icons.location_city)),
+                          //   trailing: const Icon(
+                          //     Icons.arrow_forward,
+                          //     color: Colors.white,
+                          //   ),
+                          // ),
+                          //         );
+                          //       }),
+                          // )
                         ],
                       ],
                     ),

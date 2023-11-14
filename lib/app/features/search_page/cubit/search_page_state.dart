@@ -4,11 +4,11 @@ part of 'search_page_cubit.dart';
 class SearchPageState {
   const SearchPageState({
     this.cities,
-    this.isLoading,
+    this.status = Status.initial,
     this.errorMessage,
   });
 
-  final SearchModel? cities;
-  final bool? isLoading;
+  final List<SearchModel>? cities;
+  final Status status;
   final String? errorMessage;
 }
