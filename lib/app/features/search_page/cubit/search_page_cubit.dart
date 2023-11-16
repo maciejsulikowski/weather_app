@@ -29,4 +29,23 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       ));
     }
   }
+
+  Future<void> searchCity2(String city) async {
+    //GNwD44aICxg0RdzaF8xOnGImqFaitLVY
+    emit(const SearchPageState(
+      status: Status.loading,
+    ));
+    try {
+      final cities = await searchRepository.test(city);
+
+      emit(SearchPageState(
+        status: Status.success,
+        cities: cities,
+      ));
+    } catch (error) {
+      emit(const SearchPageState(
+        status: Status.error,
+      ));
+    }
+  }
 }

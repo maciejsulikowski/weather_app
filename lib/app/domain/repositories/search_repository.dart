@@ -22,4 +22,39 @@ class SearchRepository {
       ),
     ];
   }
+
+  Future<List<SearchModel>?> test(String city) async {
+    final response = await Dio().get<Map<String, dynamic>>(
+        'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=GNwD44aICxg0RdzaF8xOnGImqFaitLVY&q=$city');
+    final responseData = response.data;
+
+    final cityName = SearchModel(
+      name: city,
+    );
+
+    if (city == cityName.name) {
+      final matchingCities = [
+        SearchModel(
+          id: 1,
+          name: 'Warszawa',
+          country: 'Poland',
+        ),
+        SearchModel(
+          id: 3,
+          name: 'Warszawa',
+          country: 'Uzbekistan',
+        ),
+        SearchModel(
+          id: 2,
+          name: 'Olsztyn',
+          country: 'Poland',
+        ),
+      ];
+
+      final filteredCities = matchingCities
+          .where((matchingCity) => matchingCity.name == city)
+          .toList();
+      return filteredCities;
+    }
+  }
 }

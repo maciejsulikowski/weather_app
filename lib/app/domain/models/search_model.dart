@@ -1,12 +1,12 @@
 class SearchModel {
-  final int id;
+  final int? id;
   final String name;
-  final String country;
+  final String? country;
 
   SearchModel({
-    required this.id,
+     this.id,
     required this.name,
-    required this.country,
+     this.country,
   });
 
   SearchModel.fromJson(Map json)
@@ -14,8 +14,7 @@ class SearchModel {
         name = json['LocalizedName'],
         country = json['Country']['LocalizedName'];
 
-
   Map toJson() {
-    return {'id': id, 'name': name, 'country' : country};
+    return {'id': id, 'name': name, 'country': country};
   }
 }
