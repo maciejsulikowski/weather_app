@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/core/enums.dart';
 import 'package:weather_app/app/domain/repositories/search_repository.dart';
 import 'package:weather_app/app/features/search_page/cubit/search_page_cubit.dart';
 import 'package:weather_app/app/features/weather_page/weather_widget.dart';
@@ -21,6 +22,7 @@ var cityName = '';
 class _SearchCityState extends State<SearchCity> {
   @override
   Widget build(BuildContext context) {
+    @override
     void toogleButton() {
       setState(() {
         isButtonClicked = !isButtonClicked;
@@ -31,6 +33,10 @@ class _SearchCityState extends State<SearchCity> {
       create: (context) => SearchPageCubit(SearchRepository()),
       child: BlocBuilder<SearchPageCubit, SearchPageState>(
         builder: (context, state) {
+          if (state.status == Status.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
           return Scaffold(
               appBar: AppBar(),
               body: SafeArea(
@@ -62,6 +68,9 @@ class _SearchCityState extends State<SearchCity> {
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
+                              // onChanged: (value) => context
+                              //     .read<SearchPageCubit>()
+                              //     .updateCities(value),
                               controller: controller,
                               style: const TextStyle(
                                   color: Colors.white70, fontSize: 22),
@@ -107,11 +116,12 @@ class _SearchCityState extends State<SearchCity> {
                                 ),
                               ]),
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               context
                                   .read<SearchPageCubit>()
                                   .searchCity2(controller.text);
                               toogleButton();
+                              
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.transparent,
@@ -126,46 +136,45 @@ class _SearchCityState extends State<SearchCity> {
                         const SizedBox(height: 20),
                         if (isButtonClicked == false) ...[const Text('nic')],
                         if (isButtonClicked == true) ...[
-                          const Text('miasta!'),
                           Column(
                             children: [
                               if (state.cities != null)
                                 for (var city in state.cities!) ...[
-                                  if (city.name == controller.text)
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const WeatherWidget(),
-                                          ),
-                                        );
-                                      },
-                                      child: ListTile(
-                                        title: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(city.name,
-                                                style: GoogleFonts.aBeeZee(
-                                                  fontSize: 24,
-                                                  color: Colors.white,
-                                                )),
-                                            Text(city.country ?? 'No-name',
-                                                style: GoogleFonts.aBeeZee(
-                                                  fontSize: 18,
-                                                  color: Colors.white,
-                                                )),
-                                          ],
+                                  const Text('miasta!'),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const WeatherWidget(),
                                         ),
-                                        leading: const CircleAvatar(
-                                            child: Icon(Icons.location_city)),
-                                        trailing: const Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.white,
-                                        ),
+                                      );
+                                    },
+                                    child: ListTile(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(city.name,
+                                              style: GoogleFonts.aBeeZee(
+                                                fontSize: 24,
+                                                color: Colors.white,
+                                              )),
+                                          Text(city.country ?? 'No-country',
+                                              style: GoogleFonts.aBeeZee(
+                                                fontSize: 18,
+                                                color: Colors.white,
+                                              )),
+                                        ],
+                                      ),
+                                      leading: const CircleAvatar(
+                                          child: Icon(Icons.location_city)),
+                                      trailing: const Icon(
+                                        Icons.arrow_forward,
+                                        color: Colors.white,
                                       ),
                                     ),
+                                  ),
                                 ],
                             ],
                           )
