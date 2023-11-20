@@ -13,33 +13,32 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   final SearchRepository searchRepository;
   List<SearchModel>? citiesList = [];
 
-  Future<void> searchCity(String city) async {
-    //GNwD44aICxg0RdzaF8xOnGImqFaitLVY
-    emit(const SearchPageState(
-      status: Status.loading,
-    ));
-    try {
-      final cities = await searchRepository.apiCall(city);
+  // Future<void> searchCity(String city) async {
+  //   //GNwD44aICxg0RdzaF8xOnGImqFaitLVY
+  //   emit(const SearchPageState(
+  //     status: Status.loading,
+  //   ));
+  //   try {
+  //     final cities = await searchRepository.apiCall(city);
 
-      emit(SearchPageState(
-        status: Status.success,
-        cities: cities,
-      ));
-    } catch (error) {
-      emit(const SearchPageState(
-        status: Status.error,
-      ));
-    }
-  }
+  //     emit(SearchPageState(
+  //       status: Status.success,
+  //       cities: cities,
+  //     ));
+  //   } catch (error) {
+  //     emit(const SearchPageState(
+  //       status: Status.error,
+  //     ));
+  //   }
+  // }
 
   Future<void> searchCity2(String city) async {
     emit(const SearchPageState(
       status: Status.loading,
     ));
     try {
-      final cities = await searchRepository.test(city);
+      final cities = await searchRepository.getWeatherModel(city);
 
-      Future.delayed(Duration(seconds: 2));
       emit(SearchPageState(
         status: Status.success,
         cities: cities,

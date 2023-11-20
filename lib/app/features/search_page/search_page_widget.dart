@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/app/core/enums.dart';
+import 'package:weather_app/app/data/remote_data_sources/search_data_source.dart';
 import 'package:weather_app/app/domain/repositories/search_repository.dart';
 import 'package:weather_app/app/features/search_page/cubit/search_page_cubit.dart';
 import 'package:weather_app/app/features/weather_page/weather_widget.dart';
@@ -30,7 +31,8 @@ class _SearchCityState extends State<SearchCity> {
     }
 
     return BlocProvider(
-      create: (context) => SearchPageCubit(SearchRepository()),
+      create: (context) =>
+          SearchPageCubit(SearchRepository(dataSource: SearchDataSource())),
       child: BlocBuilder<SearchPageCubit, SearchPageState>(
         builder: (context, state) {
           if (state.status == Status.loading) {
@@ -121,7 +123,6 @@ class _SearchCityState extends State<SearchCity> {
                                   .read<SearchPageCubit>()
                                   .searchCity2(controller.text);
                               toogleButton();
-                              
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.transparent,
@@ -134,13 +135,23 @@ class _SearchCityState extends State<SearchCity> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        if (isButtonClicked == false) ...[const Text('nic')],
+                        if (isButtonClicked == false) ...[
+                          Text('No cities found. Try again',
+                              style: GoogleFonts.aBeeZee(
+                                  fontSize: 26,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ],
                         if (isButtonClicked == true) ...[
+                          Text('Cities',
+                              style: GoogleFonts.aBeeZee(
+                                  fontSize: 26,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
                           Column(
                             children: [
                               if (state.cities != null)
                                 for (var city in state.cities!) ...[
-                                  const Text('miasta!'),
                                   InkWell(
                                     onTap: () {
                                       Navigator.of(context).push(

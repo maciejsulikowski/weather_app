@@ -9,7 +9,7 @@ class SearchModel {
      this.country,
   });
 
-  SearchModel.fromJson(Map json)
+  SearchModel.fromJson(Map<String,dynamic> json)
       : id = json['Key'],
         name = json['LocalizedName'],
         country = json['Country']['LocalizedName'];
