@@ -4,7 +4,7 @@ import 'package:weather_app/app/data/remote_data_sources/search_data_source.dart
 import 'package:weather_app/app/domain/models/search_model.dart';
 
 class SearchRepository {
-  SearchRepository({required this.dataSource});
+  SearchRepository(this.remoteDataSource, {required this.dataSource});
   // Future<List<SearchModel>?> apiCall(String city) async {
   //   final response = await Dio().get<Map<String, dynamic>>(
   //       'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=GNwD44aICxg0RdzaF8xOnGImqFaitLVY&q=$city');
@@ -27,9 +27,10 @@ class SearchRepository {
   // }
 
   final SearchDataSource dataSource;
+  final SearchRemoteDataSource remoteDataSource;
 
   Future<List<SearchModel>> getWeatherModel(String city) async {
-    final json = await dataSource.weatherDataTest();
+    final json = await remoteDataSource.weatherData(city);
 
     if (json == null) {
       return [];

@@ -18,7 +18,7 @@ class SearchCity extends StatefulWidget {
 
 TextEditingController controller = TextEditingController();
 bool isButtonClicked = false;
-var cityName = '';
+var cityMessage = '';
 
 class _SearchCityState extends State<SearchCity> {
   @override
@@ -26,35 +26,36 @@ class _SearchCityState extends State<SearchCity> {
     @override
     void toogleButton() {
       setState(() {
-        isButtonClicked = !isButtonClicked;
+        isButtonClicked = true;
       });
     }
 
     return BlocProvider(
-      create: (context) =>
-          SearchPageCubit(SearchRepository(dataSource: SearchDataSource())),
-      child: BlocBuilder<SearchPageCubit, SearchPageState>(
-        builder: (context, state) {
-          if (state.status == Status.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      create: (context) => SearchPageCubit(SearchRepository(
+          dataSource: SearchDataSource(), SearchRemoteDataSource())),
+      child: BlocListener<SearchPageCubit, SearchPageState>(
+        listener: (context, state) {},
+        child: BlocBuilder<SearchPageCubit, SearchPageState>(
+          builder: (context, state) {
+            if (state.status == Status.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          return Scaffold(
-              appBar: AppBar(),
-              body: SafeArea(
-                child: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color.fromARGB(255, 5, 36, 136),
-                      Color.fromARGB(255, 42, 39, 233),
-                    ],
-                  )),
-                  child: Center(
-                    child: Column(
-                      children: [
+            return Scaffold(
+                appBar: AppBar(),
+                body: SafeArea(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color.fromARGB(255, 5, 36, 136),
+                        Color.fromARGB(255, 42, 39, 233),
+                      ],
+                    )),
+                    child: Center(
+                      child: Column(children: [
                         const SizedBox(
                           height: 30,
                         ),
@@ -70,9 +71,6 @@ class _SearchCityState extends State<SearchCity> {
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
-                              onChanged: (value) => context
-                                  .read<SearchPageCubit>()
-                                  .updateCities(controller.text),
                               controller: controller,
                               style: const TextStyle(
                                   color: Colors.white70, fontSize: 22),
@@ -118,11 +116,12 @@ class _SearchCityState extends State<SearchCity> {
                                 ),
                               ]),
                           child: ElevatedButton(
-                            onPressed: () async {
+                            onPressed: () {
                               context
                                   .read<SearchPageCubit>()
-                                  .searchCity2(controller.text);
+                                  .searchCity(controller.text);
                               toogleButton();
+                              controller.clear();
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.transparent,
@@ -135,94 +134,54 @@ class _SearchCityState extends State<SearchCity> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        if (isButtonClicked == false) ...[
-                          Text('No cities found. Try again',
-                              style: GoogleFonts.aBeeZee(
-                                  fontSize: 26,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                        ],
-                        if (isButtonClicked == true) ...[
-                          Text('Cities',
-                              style: GoogleFonts.aBeeZee(
-                                  fontSize: 26,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
+                        if (isButtonClicked) ...[
                           Column(
                             children: [
-                              if (state.cities != null)
-                                for (var city in state.cities!) ...[
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const WeatherWidget(),
-                                        ),
-                                      );
-                                    },
-                                    child: ListTile(
-                                      title: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(city.name,
-                                              style: GoogleFonts.aBeeZee(
-                                                fontSize: 24,
-                                                color: Colors.white,
-                                              )),
-                                          Text(city.country ?? 'No-country',
-                                              style: GoogleFonts.aBeeZee(
-                                                fontSize: 18,
-                                                color: Colors.white,
-                                              )),
-                                        ],
+                              for (var city in state.cities) ...[
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const WeatherWidget(),
                                       ),
-                                      leading: const CircleAvatar(
-                                          child: Icon(Icons.location_city)),
-                                      trailing: const Icon(
-                                        Icons.arrow_forward,
-                                        color: Colors.white,
-                                      ),
+                                    );
+                                  },
+                                  child: ListTile(
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(city.name,
+                                            style: GoogleFonts.aBeeZee(
+                                              fontSize: 24,
+                                              color: Colors.white,
+                                            )),
+                                        Text(city.country ?? 'No-country',
+                                            style: GoogleFonts.aBeeZee(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                            )),
+                                      ],
+                                    ),
+                                    leading: const CircleAvatar(
+                                        child: Icon(Icons.location_city)),
+                                    trailing: const Icon(
+                                      Icons.arrow_forward,
+                                      color: Colors.white,
                                     ),
                                   ),
-                                ],
+                                ),
+                              ],
                             ],
                           )
-                          // Expanded(
-                          //   child: ListView.builder(
-                          //       itemCount: state.cities,
-                          //       itemBuilder: (context, index) {
-                          //         return InkWell(
-                          //           onTap: () {
-                          //             Navigator.of(context).push(
-                          //                 MaterialPageRoute(
-                          //                     builder: (context) =>
-                          //                         const WeatherWidget()));
-                          //           },
-                          // child: ListTile(
-                          //   title: Text(searchModel[index],
-                          //       style: GoogleFonts.aBeeZee(
-                          //         fontSize: 24,
-                          //         color: Colors.white,
-                          //       )),
-                          //   leading: const CircleAvatar(
-                          //       child: Icon(Icons.location_city)),
-                          //   trailing: const Icon(
-                          //     Icons.arrow_forward,
-                          //     color: Colors.white,
-                          //   ),
-                          // ),
-                          //         );
-                          //       }),
-                          // )
                         ],
-                      ],
+                      ]),
                     ),
                   ),
-                ),
-              ));
-        },
+                ));
+          },
+        ),
       ),
     );
   }

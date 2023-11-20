@@ -7,34 +7,15 @@ import 'package:weather_app/app/domain/repositories/search_repository.dart';
 part 'search_page_state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
-  SearchPageCubit(this.searchRepository) : super(const SearchPageState());
+  SearchPageCubit(this.searchRepository)
+      : super(const SearchPageState(cities: []));
 
-  bool isButtonClicked = false;
   final SearchRepository searchRepository;
-  List<SearchModel>? citiesList = [];
 
-  // Future<void> searchCity(String city) async {
-  //   //GNwD44aICxg0RdzaF8xOnGImqFaitLVY
-  //   emit(const SearchPageState(
-  //     status: Status.loading,
-  //   ));
-  //   try {
-  //     final cities = await searchRepository.apiCall(city);
-
-  //     emit(SearchPageState(
-  //       status: Status.success,
-  //       cities: cities,
-  //     ));
-  //   } catch (error) {
-  //     emit(const SearchPageState(
-  //       status: Status.error,
-  //     ));
-  //   }
-  // }
-
-  Future<void> searchCity2(String city) async {
+  Future<void> searchCity(String city) async {
     emit(const SearchPageState(
       status: Status.loading,
+      cities: [],
     ));
     try {
       final cities = await searchRepository.getWeatherModel(city);
@@ -45,17 +26,9 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       ));
     } catch (error) {
       emit(const SearchPageState(
+        cities: [],
         status: Status.error,
       ));
     }
-  }
-
-  Future<void> updateCities(String value) async {
-    final filteredCityList =
-        citiesList!.where((city) => city.name == value).toList();
-    emit(SearchPageState(
-      status: Status.success,
-      cities: filteredCityList,
-    ));
   }
 }
