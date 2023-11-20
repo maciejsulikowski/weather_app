@@ -4,17 +4,13 @@ class SearchModel {
   final String? country;
 
   SearchModel({
-     this.id,
+    this.id,
     required this.name,
-     this.country,
+    this.country,
   });
 
-  SearchModel.fromJson(Map<String,dynamic> json)
-      : id = json['Key'],
-        name = json['LocalizedName'],
-        country = json['Country']['LocalizedName'];
-
-  Map toJson() {
-    return {'id': id, 'name': name, 'country': country};
-  }
+  SearchModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        country = json['country'];
 }

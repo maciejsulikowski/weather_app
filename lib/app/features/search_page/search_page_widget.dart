@@ -70,9 +70,9 @@ class _SearchCityState extends State<SearchCity> {
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
-                              // onChanged: (value) => context
-                              //     .read<SearchPageCubit>()
-                              //     .updateCities(value),
+                              onChanged: (value) => context
+                                  .read<SearchPageCubit>()
+                                  .updateCities(controller.text),
                               controller: controller,
                               style: const TextStyle(
                                   color: Colors.white70, fontSize: 22),

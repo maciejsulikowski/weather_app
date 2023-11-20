@@ -2,7 +2,7 @@
 
 class SearchDataSource {
 
-  Future<List<Map<String, dynamic>>?> weatherDataTest(String city) async {
+  Future<List<Map<String, dynamic>>?> weatherDataTest() async {
     return [
       {
         'id': 1,

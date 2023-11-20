@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:weather_app/app/data/remote_data_sources/search_data_source.dart';
 import 'package:weather_app/app/domain/models/search_model.dart';
 
@@ -28,12 +29,14 @@ class SearchRepository {
   final SearchDataSource dataSource;
 
   Future<List<SearchModel>> getWeatherModel(String city) async {
-    final json = await dataSource.weatherDataTest(city);
+    final json = await dataSource.weatherDataTest();
 
     if (json == null) {
       return [];
     }
 
-    return json.map((item) => SearchModel.fromJson(item)).toList();
+    final allCities = json.map((item) => SearchModel.fromJson(item)).toList();
+
+    return allCities.where((element) => element.name == city).toList();
   }
 }
