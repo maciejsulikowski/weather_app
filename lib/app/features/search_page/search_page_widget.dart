@@ -26,7 +26,7 @@ class _SearchCityState extends State<SearchCity> {
     @override
     void toogleButton() {
       setState(() {
-        isButtonClicked = true;
+        isButtonClicked = !isButtonClicked;
       });
     }
 
@@ -134,48 +134,49 @@ class _SearchCityState extends State<SearchCity> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        if (isButtonClicked) ...[
-                          Column(
-                            children: [
-                              for (var city in state.cities) ...[
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const WeatherWidget(),
-                                      ),
-                                    );
-                                  },
-                                  child: ListTile(
-                                    title: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(city.name,
-                                            style: GoogleFonts.aBeeZee(
-                                              fontSize: 24,
-                                              color: Colors.white,
-                                            )),
-                                        Text(city.country ?? 'No-country',
-                                            style: GoogleFonts.aBeeZee(
-                                              fontSize: 18,
-                                              color: Colors.white,
-                                            )),
-                                      ],
+                        if (isButtonClicked == false) ...[
+                          Text('cHUJ'),
+                        ],
+                        Column(
+                          children: [
+                            for (var city in state.cities) ...[
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const WeatherWidget(),
                                     ),
-                                    leading: const CircleAvatar(
-                                        child: Icon(Icons.location_city)),
-                                    trailing: const Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                    ),
+                                  );
+                                },
+                                child: ListTile(
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(city.name,
+                                          style: GoogleFonts.aBeeZee(
+                                            fontSize: 24,
+                                            color: Colors.white,
+                                          )),
+                                      Text(city.sys.country,
+                                          style: GoogleFonts.aBeeZee(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                          )),
+                                    ],
+                                  ),
+                                  leading: const CircleAvatar(
+                                      child: Icon(Icons.location_city)),
+                                  trailing: const Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
                                   ),
                                 ),
-                              ],
+                              ),
                             ],
-                          )
-                        ],
+                          ],
+                        )
                       ]),
                     ),
                   ),

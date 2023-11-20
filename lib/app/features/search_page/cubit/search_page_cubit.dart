@@ -10,13 +10,30 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   SearchPageCubit(this.searchRepository)
       : super(const SearchPageState(cities: []));
 
+  bool isButtonClicked = false;
   final SearchRepository searchRepository;
+  List<SearchModel>? citiesList = [];
+
+  // Future<void> searchCity(String city) async {
+  //   //GNwD44aICxg0RdzaF8xOnGImqFaitLVY
+  //   emit(const SearchPageState(
+  //     status: Status.loading,
+  //   ));
+  //   try {
+  //     final cities = await searchRepository.apiCall(city);
+
+  //     emit(SearchPageState(
+  //       status: Status.success,
+  //       cities: cities,
+  //     ));
+  //   } catch (error) {
+  //     emit(const SearchPageState(
+  //       status: Status.error,
+  //     ));
+  //   }
+  // }
 
   Future<void> searchCity(String city) async {
-    emit(const SearchPageState(
-      status: Status.loading,
-      cities: [],
-    ));
     try {
       final cities = await searchRepository.getWeatherModel(city);
 

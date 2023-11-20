@@ -30,7 +30,7 @@ class SearchRepository {
   final SearchRemoteDataSource remoteDataSource;
 
   Future<List<SearchModel>> getWeatherModel(String city) async {
-    final json = await remoteDataSource.weatherData(city);
+    final json = await remoteDataSource.weatherData(city: city);
 
     if (json == null) {
       return [];
