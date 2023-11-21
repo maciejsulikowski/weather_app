@@ -32,7 +32,8 @@ class _SearchCityState extends State<SearchCity> {
 
     return BlocProvider(
       create: (context) => SearchPageCubit(SearchRepository(
-          dataSource: SearchDataSource(), SearchRemoteDataSource())),
+          dataSource: SearchDataSource(), SearchRemoteDataSource()))
+        ..searchCity(controller.text),
       child: BlocListener<SearchPageCubit, SearchPageState>(
         listener: (context, state) {},
         child: BlocBuilder<SearchPageCubit, SearchPageState>(
@@ -134,11 +135,14 @@ class _SearchCityState extends State<SearchCity> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        if (isButtonClicked == false) ...[
-                          Text('cHUJ'),
-                        ],
                         Column(
                           children: [
+                            if (isButtonClicked)
+                              Text('Cities',
+                                  style: GoogleFonts.aBeeZee(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  )),
                             for (var city in state.cities) ...[
                               InkWell(
                                 onTap: () {
@@ -159,7 +163,7 @@ class _SearchCityState extends State<SearchCity> {
                                             fontSize: 24,
                                             color: Colors.white,
                                           )),
-                                      Text(city.sys.country,
+                                      Text(city.name,
                                           style: GoogleFonts.aBeeZee(
                                             fontSize: 18,
                                             color: Colors.white,
@@ -176,7 +180,17 @@ class _SearchCityState extends State<SearchCity> {
                               ),
                             ],
                           ],
-                        )
+                        ),
+                        if (isButtonClicked == false)
+                          Column(
+                            children: [
+                              Text('NIC',
+                                  style: GoogleFonts.aBeeZee(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  ))
+                            ],
+                          )
                       ]),
                     ),
                   ),

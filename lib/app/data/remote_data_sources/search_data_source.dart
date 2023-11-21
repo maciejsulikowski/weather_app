@@ -23,12 +23,16 @@ class SearchDataSource {
 }
 
 class SearchRemoteDataSource {
-  Future<List<Map<String, dynamic>>?> weatherData(
-      {required String city}) async {
-    final response = await Dio().get(
-      'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=310f71ed85a8893ac02f723c86324a4c&units=metric',
+  Future<List<Map<String, dynamic>>?> weatherData(String city) async {
+    final response = await Dio().get<List<dynamic>>(
+      'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=GNwD44aICxg0RdzaF8xOnGImqFaitLVY&q=$city',
     );
 
-    return response.data;
+    final listDynamic = response.data;
+    if (listDynamic == null) {
+      return null;
+    }
+
+    return listDynamic.map((list) => list as Map<String, dynamic>).toList();
   }
 }
