@@ -32,10 +32,17 @@ class _SearchCityState extends State<SearchCity> {
 
     return BlocProvider(
       create: (context) => SearchPageCubit(SearchRepository(
-          dataSource: SearchDataSource(), SearchRemoteDataSource()))
-        ..searchCity(controller.text),
+          dataSource: SearchDataSource(), SearchRemoteDataSource())),
       child: BlocListener<SearchPageCubit, SearchPageState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.status == Status.error) {
+            final errorMessage = state.errorMessage;
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(errorMessage ?? 'Unknown error'),
+              backgroundColor: Colors.red,
+            ));
+          }
+        },
         child: BlocBuilder<SearchPageCubit, SearchPageState>(
           builder: (context, state) {
             if (state.status == Status.loading) {
@@ -163,7 +170,7 @@ class _SearchCityState extends State<SearchCity> {
                                             fontSize: 24,
                                             color: Colors.white,
                                           )),
-                                      Text(city.name,
+                                      Text(city.id.toString(),
                                           style: GoogleFonts.aBeeZee(
                                             fontSize: 18,
                                             color: Colors.white,
