@@ -3,7 +3,7 @@ part of 'search_page_cubit.dart';
 @immutable
 class SearchPageState {
   const SearchPageState({
-    required this.cities,
+    this.cities = const[],
     this.status = Status.initial,
     this.errorMessage,
   });

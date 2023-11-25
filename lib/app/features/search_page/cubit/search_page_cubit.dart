@@ -1,4 +1,3 @@
-
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
@@ -10,14 +9,16 @@ import 'package:weather_app/app/domain/repositories/search_repository.dart';
 part 'search_page_state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
-  SearchPageCubit(this.searchRepository)
-      : super(const SearchPageState(cities: []));
+  SearchPageCubit(this.searchRepository) : super(const SearchPageState());
 
   final SearchRepository searchRepository;
 
   Future<void> searchCity(String city) async {
     final cities = await searchRepository.getWeatherModel(city);
-
+    // print(cities);
+    emit(const SearchPageState(
+      status: Status.loading,
+    ));
     try {
       emit(SearchPageState(
         status: Status.success,
@@ -25,7 +26,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       ));
     } catch (error) {
       emit(SearchPageState(
-        cities: const [],
         status: Status.error,
         errorMessage: error.toString(),
       ));

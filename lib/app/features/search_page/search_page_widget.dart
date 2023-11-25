@@ -23,16 +23,16 @@ var cityMessage = '';
 class _SearchCityState extends State<SearchCity> {
   @override
   Widget build(BuildContext context) {
-    @override
-    void toogleButton() {
-      setState(() {
-        isButtonClicked = !isButtonClicked;
-      });
-    }
+    // @override
+    // void toogleButton() {
+    //   setState(() {
+    //     isButtonClicked = !isButtonClicked;
+    //   });
+    // }
 
     return BlocProvider(
       create: (context) => SearchPageCubit(SearchRepository(
-          dataSource: SearchDataSource(), SearchRemoteDataSource())),
+          dataSource: SearchDataSource(), WeatherDataSource())),
       child: BlocListener<SearchPageCubit, SearchPageState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -128,7 +128,7 @@ class _SearchCityState extends State<SearchCity> {
                               context
                                   .read<SearchPageCubit>()
                                   .searchCity(controller.text);
-                              toogleButton();
+                              // toogleButton();
                               controller.clear();
                             },
                             style: ElevatedButton.styleFrom(
@@ -144,12 +144,11 @@ class _SearchCityState extends State<SearchCity> {
                         const SizedBox(height: 20),
                         Column(
                           children: [
-                            if (isButtonClicked)
-                              Text('Cities',
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 24,
-                                    color: Colors.white,
-                                  )),
+                            Text('Cities',
+                                style: GoogleFonts.aBeeZee(
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                )),
                             for (var city in state.cities) ...[
                               InkWell(
                                 onTap: () {
@@ -165,12 +164,12 @@ class _SearchCityState extends State<SearchCity> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(city.name,
+                                      Text(city.localizedName,
                                           style: GoogleFonts.aBeeZee(
                                             fontSize: 24,
                                             color: Colors.white,
                                           )),
-                                      Text(city.id.toString(),
+                                      Text(city.key,
                                           style: GoogleFonts.aBeeZee(
                                             fontSize: 18,
                                             color: Colors.white,
@@ -188,16 +187,6 @@ class _SearchCityState extends State<SearchCity> {
                             ],
                           ],
                         ),
-                        if (isButtonClicked == false)
-                          Column(
-                            children: [
-                              Text('NIC',
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 24,
-                                    color: Colors.white,
-                                  ))
-                            ],
-                          )
                       ]),
                     ),
                   ),
