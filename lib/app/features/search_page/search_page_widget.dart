@@ -142,50 +142,55 @@ class _SearchCityState extends State<SearchCity> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Column(
-                          children: [
-                            Text('Cities',
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              Text(
+                                'Cities',
                                 style: GoogleFonts.aBeeZee(
                                   fontSize: 24,
                                   color: Colors.white,
-                                )),
-                            for (var city in state.cities) ...[
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const WeatherWidget(),
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              for (var city in state.cities) ...[
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const WeatherWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: ListTile(
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(city.localizedName,
+                                            style: GoogleFonts.aBeeZee(
+                                              fontSize: 24,
+                                              color: Colors.white,
+                                            )),
+                                        Text(city.country.localizedName,
+                                            style: GoogleFonts.aBeeZee(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                            )),
+                                      ],
                                     ),
-                                  );
-                                },
-                                child: ListTile(
-                                  title: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(city.localizedName,
-                                          style: GoogleFonts.aBeeZee(
-                                            fontSize: 24,
-                                            color: Colors.white,
-                                          )),
-                                      Text(city.key,
-                                          style: GoogleFonts.aBeeZee(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                          )),
-                                    ],
-                                  ),
-                                  leading: const CircleAvatar(
-                                      child: Icon(Icons.location_city)),
-                                  trailing: const Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
+                                    leading: const CircleAvatar(
+                                        child: Icon(Icons.location_city)),
+                                    trailing: const Icon(
+                                      Icons.arrow_forward,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ],
-                          ],
+                          ),
                         ),
                       ]),
                     ),

@@ -8,10 +8,22 @@ class SearchModel with _$SearchModel {
   factory SearchModel(
     @JsonKey(name: 'Key') String key,
     @JsonKey(name: 'LocalizedName') String localizedName,
+    @JsonKey(name: 'Country') CountryModel country,
   ) = _SearchModel;
 
   factory SearchModel.fromJson(Map<String, dynamic> json) =>
       _$SearchModelFromJson(json);
+}
+
+@freezed
+class CountryModel with _$CountryModel {
+  factory CountryModel(
+    @JsonKey(name: 'ID') String id,
+    @JsonKey(name: 'LocalizedName') String localizedName,
+  ) = _CountryModel;
+
+  factory CountryModel.fromJson(Map<String, dynamic> json) =>
+      _$CountryModelFromJson(json);
 }
 
 // @JsonSerializable()

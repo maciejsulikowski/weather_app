@@ -24,6 +24,8 @@ mixin _$SearchModel {
   String get key => throw _privateConstructorUsedError;
   @JsonKey(name: 'LocalizedName')
   String get localizedName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Country')
+  CountryModel get country => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +41,10 @@ abstract class $SearchModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'Key') String key,
-      @JsonKey(name: 'LocalizedName') String localizedName});
+      @JsonKey(name: 'LocalizedName') String localizedName,
+      @JsonKey(name: 'Country') CountryModel country});
+
+  $CountryModelCopyWith<$Res> get country;
 }
 
 /// @nodoc
@@ -57,6 +62,7 @@ class _$SearchModelCopyWithImpl<$Res, $Val extends SearchModel>
   $Res call({
     Object? key = null,
     Object? localizedName = null,
+    Object? country = null,
   }) {
     return _then(_value.copyWith(
       key: null == key
@@ -67,7 +73,19 @@ class _$SearchModelCopyWithImpl<$Res, $Val extends SearchModel>
           ? _value.localizedName
           : localizedName // ignore: cast_nullable_to_non_nullable
               as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as CountryModel,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CountryModelCopyWith<$Res> get country {
+    return $CountryModelCopyWith<$Res>(_value.country, (value) {
+      return _then(_value.copyWith(country: value) as $Val);
+    });
   }
 }
 
@@ -81,7 +99,11 @@ abstract class _$$SearchModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'Key') String key,
-      @JsonKey(name: 'LocalizedName') String localizedName});
+      @JsonKey(name: 'LocalizedName') String localizedName,
+      @JsonKey(name: 'Country') CountryModel country});
+
+  @override
+  $CountryModelCopyWith<$Res> get country;
 }
 
 /// @nodoc
@@ -97,6 +119,7 @@ class __$$SearchModelImplCopyWithImpl<$Res>
   $Res call({
     Object? key = null,
     Object? localizedName = null,
+    Object? country = null,
   }) {
     return _then(_$SearchModelImpl(
       null == key
@@ -107,6 +130,10 @@ class __$$SearchModelImplCopyWithImpl<$Res>
           ? _value.localizedName
           : localizedName // ignore: cast_nullable_to_non_nullable
               as String,
+      null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as CountryModel,
     ));
   }
 }
@@ -114,8 +141,10 @@ class __$$SearchModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SearchModelImpl implements _SearchModel {
-  _$SearchModelImpl(@JsonKey(name: 'Key') this.key,
-      @JsonKey(name: 'LocalizedName') this.localizedName);
+  _$SearchModelImpl(
+      @JsonKey(name: 'Key') this.key,
+      @JsonKey(name: 'LocalizedName') this.localizedName,
+      @JsonKey(name: 'Country') this.country);
 
   factory _$SearchModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchModelImplFromJson(json);
@@ -126,10 +155,13 @@ class _$SearchModelImpl implements _SearchModel {
   @override
   @JsonKey(name: 'LocalizedName')
   final String localizedName;
+  @override
+  @JsonKey(name: 'Country')
+  final CountryModel country;
 
   @override
   String toString() {
-    return 'SearchModel(key: $key, localizedName: $localizedName)';
+    return 'SearchModel(key: $key, localizedName: $localizedName, country: $country)';
   }
 
   @override
@@ -139,12 +171,13 @@ class _$SearchModelImpl implements _SearchModel {
             other is _$SearchModelImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.localizedName, localizedName) ||
-                other.localizedName == localizedName));
+                other.localizedName == localizedName) &&
+            (identical(other.country, country) || other.country == country));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, key, localizedName);
+  int get hashCode => Object.hash(runtimeType, key, localizedName, country);
 
   @JsonKey(ignore: true)
   @override
@@ -161,9 +194,10 @@ class _$SearchModelImpl implements _SearchModel {
 }
 
 abstract class _SearchModel implements SearchModel {
-  factory _SearchModel(@JsonKey(name: 'Key') final String key,
-          @JsonKey(name: 'LocalizedName') final String localizedName) =
-      _$SearchModelImpl;
+  factory _SearchModel(
+      @JsonKey(name: 'Key') final String key,
+      @JsonKey(name: 'LocalizedName') final String localizedName,
+      @JsonKey(name: 'Country') final CountryModel country) = _$SearchModelImpl;
 
   factory _SearchModel.fromJson(Map<String, dynamic> json) =
       _$SearchModelImpl.fromJson;
@@ -175,7 +209,176 @@ abstract class _SearchModel implements SearchModel {
   @JsonKey(name: 'LocalizedName')
   String get localizedName;
   @override
+  @JsonKey(name: 'Country')
+  CountryModel get country;
+  @override
   @JsonKey(ignore: true)
   _$$SearchModelImplCopyWith<_$SearchModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CountryModel _$CountryModelFromJson(Map<String, dynamic> json) {
+  return _CountryModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CountryModel {
+  @JsonKey(name: 'ID')
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LocalizedName')
+  String get localizedName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CountryModelCopyWith<CountryModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CountryModelCopyWith<$Res> {
+  factory $CountryModelCopyWith(
+          CountryModel value, $Res Function(CountryModel) then) =
+      _$CountryModelCopyWithImpl<$Res, CountryModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') String id,
+      @JsonKey(name: 'LocalizedName') String localizedName});
+}
+
+/// @nodoc
+class _$CountryModelCopyWithImpl<$Res, $Val extends CountryModel>
+    implements $CountryModelCopyWith<$Res> {
+  _$CountryModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? localizedName = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      localizedName: null == localizedName
+          ? _value.localizedName
+          : localizedName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CountryModelImplCopyWith<$Res>
+    implements $CountryModelCopyWith<$Res> {
+  factory _$$CountryModelImplCopyWith(
+          _$CountryModelImpl value, $Res Function(_$CountryModelImpl) then) =
+      __$$CountryModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') String id,
+      @JsonKey(name: 'LocalizedName') String localizedName});
+}
+
+/// @nodoc
+class __$$CountryModelImplCopyWithImpl<$Res>
+    extends _$CountryModelCopyWithImpl<$Res, _$CountryModelImpl>
+    implements _$$CountryModelImplCopyWith<$Res> {
+  __$$CountryModelImplCopyWithImpl(
+      _$CountryModelImpl _value, $Res Function(_$CountryModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? localizedName = null,
+  }) {
+    return _then(_$CountryModelImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == localizedName
+          ? _value.localizedName
+          : localizedName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CountryModelImpl implements _CountryModel {
+  _$CountryModelImpl(@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LocalizedName') this.localizedName);
+
+  factory _$CountryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CountryModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final String id;
+  @override
+  @JsonKey(name: 'LocalizedName')
+  final String localizedName;
+
+  @override
+  String toString() {
+    return 'CountryModel(id: $id, localizedName: $localizedName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CountryModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.localizedName, localizedName) ||
+                other.localizedName == localizedName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, localizedName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CountryModelImplCopyWith<_$CountryModelImpl> get copyWith =>
+      __$$CountryModelImplCopyWithImpl<_$CountryModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CountryModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CountryModel implements CountryModel {
+  factory _CountryModel(@JsonKey(name: 'ID') final String id,
+          @JsonKey(name: 'LocalizedName') final String localizedName) =
+      _$CountryModelImpl;
+
+  factory _CountryModel.fromJson(Map<String, dynamic> json) =
+      _$CountryModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  String get id;
+  @override
+  @JsonKey(name: 'LocalizedName')
+  String get localizedName;
+  @override
+  @JsonKey(ignore: true)
+  _$$CountryModelImplCopyWith<_$CountryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
