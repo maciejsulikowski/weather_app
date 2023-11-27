@@ -16,7 +16,7 @@ class SearchRepository {
 
     final allCities = json.map((item) => SearchModel.fromJson(item)).toList();
 
-    print(allCities);
+  
     return allCities.where((element) => element.localizedName == city).toList();
   }
 }

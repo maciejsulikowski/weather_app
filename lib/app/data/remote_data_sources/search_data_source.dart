@@ -234,5 +234,17 @@ class WeatherDataSource {
       throw Exception(error.response?.data ?? 'Unknown error');
     }
   }
-  //2 future
+
+  Future<Map<String, dynamic>?> forecastData(String key) async {
+    final response = await Dio().get(
+      'http://dataservice.accuweather.com/forecasts/v1/daily/5day/$key?apikey=GNwD44aICxg0RdzaF8xOnGImqFaitLVY',
+    );
+
+    final responseData = response.data;
+    if (responseData == null) {
+      return null;
+    }
+
+    return responseData;
+  }
 }
