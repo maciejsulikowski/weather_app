@@ -18,7 +18,7 @@ class WeatherCubit extends Cubit<WeatherState> {
 
     try {
       emit(WeatherState(
-        dailyForecast: weather,
+        dailyForecast: weather ,
         status: Status.success,
       ));
     } catch (error) {

@@ -23,7 +23,7 @@ mixin _$WeatherModel {
   @JsonKey(name: "Headline")
   Headline get headline => throw _privateConstructorUsedError;
   @JsonKey(name: "DailyForecasts")
-  List<DailyForecast> get dailyForecasts => throw _privateConstructorUsedError;
+  DailyForecast get dailyForecasts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,9 +39,10 @@ abstract class $WeatherModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "Headline") Headline headline,
-      @JsonKey(name: "DailyForecasts") List<DailyForecast> dailyForecasts});
+      @JsonKey(name: "DailyForecasts") DailyForecast dailyForecasts});
 
   $HeadlineCopyWith<$Res> get headline;
+  $DailyForecastCopyWith<$Res> get dailyForecasts;
 }
 
 /// @nodoc
@@ -68,7 +69,7 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
       dailyForecasts: null == dailyForecasts
           ? _value.dailyForecasts
           : dailyForecasts // ignore: cast_nullable_to_non_nullable
-              as List<DailyForecast>,
+              as DailyForecast,
     ) as $Val);
   }
 
@@ -77,6 +78,14 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
   $HeadlineCopyWith<$Res> get headline {
     return $HeadlineCopyWith<$Res>(_value.headline, (value) {
       return _then(_value.copyWith(headline: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DailyForecastCopyWith<$Res> get dailyForecasts {
+    return $DailyForecastCopyWith<$Res>(_value.dailyForecasts, (value) {
+      return _then(_value.copyWith(dailyForecasts: value) as $Val);
     });
   }
 }
@@ -91,10 +100,12 @@ abstract class _$$WeatherModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "Headline") Headline headline,
-      @JsonKey(name: "DailyForecasts") List<DailyForecast> dailyForecasts});
+      @JsonKey(name: "DailyForecasts") DailyForecast dailyForecasts});
 
   @override
   $HeadlineCopyWith<$Res> get headline;
+  @override
+  $DailyForecastCopyWith<$Res> get dailyForecasts;
 }
 
 /// @nodoc
@@ -117,9 +128,9 @@ class __$$WeatherModelImplCopyWithImpl<$Res>
           : headline // ignore: cast_nullable_to_non_nullable
               as Headline,
       null == dailyForecasts
-          ? _value._dailyForecasts
+          ? _value.dailyForecasts
           : dailyForecasts // ignore: cast_nullable_to_non_nullable
-              as List<DailyForecast>,
+              as DailyForecast,
     ));
   }
 }
@@ -128,8 +139,7 @@ class __$$WeatherModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeatherModelImpl implements _WeatherModel {
   _$WeatherModelImpl(@JsonKey(name: "Headline") this.headline,
-      @JsonKey(name: "DailyForecasts") final List<DailyForecast> dailyForecasts)
-      : _dailyForecasts = dailyForecasts;
+      @JsonKey(name: "DailyForecasts") this.dailyForecasts);
 
   factory _$WeatherModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherModelImplFromJson(json);
@@ -137,14 +147,9 @@ class _$WeatherModelImpl implements _WeatherModel {
   @override
   @JsonKey(name: "Headline")
   final Headline headline;
-  final List<DailyForecast> _dailyForecasts;
   @override
   @JsonKey(name: "DailyForecasts")
-  List<DailyForecast> get dailyForecasts {
-    if (_dailyForecasts is EqualUnmodifiableListView) return _dailyForecasts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dailyForecasts);
-  }
+  final DailyForecast dailyForecasts;
 
   @override
   String toString() {
@@ -158,14 +163,13 @@ class _$WeatherModelImpl implements _WeatherModel {
             other is _$WeatherModelImpl &&
             (identical(other.headline, headline) ||
                 other.headline == headline) &&
-            const DeepCollectionEquality()
-                .equals(other._dailyForecasts, _dailyForecasts));
+            (identical(other.dailyForecasts, dailyForecasts) ||
+                other.dailyForecasts == dailyForecasts));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, headline,
-      const DeepCollectionEquality().hash(_dailyForecasts));
+  int get hashCode => Object.hash(runtimeType, headline, dailyForecasts);
 
   @JsonKey(ignore: true)
   @override
@@ -182,10 +186,9 @@ class _$WeatherModelImpl implements _WeatherModel {
 }
 
 abstract class _WeatherModel implements WeatherModel {
-  factory _WeatherModel(
-      @JsonKey(name: "Headline") final Headline headline,
-      @JsonKey(name: "DailyForecasts")
-      final List<DailyForecast> dailyForecasts) = _$WeatherModelImpl;
+  factory _WeatherModel(@JsonKey(name: "Headline") final Headline headline,
+          @JsonKey(name: "DailyForecasts") final DailyForecast dailyForecasts) =
+      _$WeatherModelImpl;
 
   factory _WeatherModel.fromJson(Map<String, dynamic> json) =
       _$WeatherModelImpl.fromJson;
@@ -195,7 +198,7 @@ abstract class _WeatherModel implements WeatherModel {
   Headline get headline;
   @override
   @JsonKey(name: "DailyForecasts")
-  List<DailyForecast> get dailyForecasts;
+  DailyForecast get dailyForecasts;
   @override
   @JsonKey(ignore: true)
   _$$WeatherModelImplCopyWith<_$WeatherModelImpl> get copyWith =>
@@ -211,7 +214,7 @@ mixin _$Temperatures {
   @JsonKey(name: "Headline")
   Headline get headline => throw _privateConstructorUsedError;
   @JsonKey(name: "DailyForecasts")
-  List<DailyForecast> get dailyForecasts => throw _privateConstructorUsedError;
+  DailyForecast get dailyForecasts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -227,9 +230,10 @@ abstract class $TemperaturesCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "Headline") Headline headline,
-      @JsonKey(name: "DailyForecasts") List<DailyForecast> dailyForecasts});
+      @JsonKey(name: "DailyForecasts") DailyForecast dailyForecasts});
 
   $HeadlineCopyWith<$Res> get headline;
+  $DailyForecastCopyWith<$Res> get dailyForecasts;
 }
 
 /// @nodoc
@@ -256,7 +260,7 @@ class _$TemperaturesCopyWithImpl<$Res, $Val extends Temperatures>
       dailyForecasts: null == dailyForecasts
           ? _value.dailyForecasts
           : dailyForecasts // ignore: cast_nullable_to_non_nullable
-              as List<DailyForecast>,
+              as DailyForecast,
     ) as $Val);
   }
 
@@ -265,6 +269,14 @@ class _$TemperaturesCopyWithImpl<$Res, $Val extends Temperatures>
   $HeadlineCopyWith<$Res> get headline {
     return $HeadlineCopyWith<$Res>(_value.headline, (value) {
       return _then(_value.copyWith(headline: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DailyForecastCopyWith<$Res> get dailyForecasts {
+    return $DailyForecastCopyWith<$Res>(_value.dailyForecasts, (value) {
+      return _then(_value.copyWith(dailyForecasts: value) as $Val);
     });
   }
 }
@@ -279,10 +291,12 @@ abstract class _$$TemperaturesImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "Headline") Headline headline,
-      @JsonKey(name: "DailyForecasts") List<DailyForecast> dailyForecasts});
+      @JsonKey(name: "DailyForecasts") DailyForecast dailyForecasts});
 
   @override
   $HeadlineCopyWith<$Res> get headline;
+  @override
+  $DailyForecastCopyWith<$Res> get dailyForecasts;
 }
 
 /// @nodoc
@@ -305,9 +319,9 @@ class __$$TemperaturesImplCopyWithImpl<$Res>
           : headline // ignore: cast_nullable_to_non_nullable
               as Headline,
       null == dailyForecasts
-          ? _value._dailyForecasts
+          ? _value.dailyForecasts
           : dailyForecasts // ignore: cast_nullable_to_non_nullable
-              as List<DailyForecast>,
+              as DailyForecast,
     ));
   }
 }
@@ -316,8 +330,7 @@ class __$$TemperaturesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TemperaturesImpl implements _Temperatures {
   _$TemperaturesImpl(@JsonKey(name: "Headline") this.headline,
-      @JsonKey(name: "DailyForecasts") final List<DailyForecast> dailyForecasts)
-      : _dailyForecasts = dailyForecasts;
+      @JsonKey(name: "DailyForecasts") this.dailyForecasts);
 
   factory _$TemperaturesImpl.fromJson(Map<String, dynamic> json) =>
       _$$TemperaturesImplFromJson(json);
@@ -325,14 +338,9 @@ class _$TemperaturesImpl implements _Temperatures {
   @override
   @JsonKey(name: "Headline")
   final Headline headline;
-  final List<DailyForecast> _dailyForecasts;
   @override
   @JsonKey(name: "DailyForecasts")
-  List<DailyForecast> get dailyForecasts {
-    if (_dailyForecasts is EqualUnmodifiableListView) return _dailyForecasts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dailyForecasts);
-  }
+  final DailyForecast dailyForecasts;
 
   @override
   String toString() {
@@ -346,14 +354,13 @@ class _$TemperaturesImpl implements _Temperatures {
             other is _$TemperaturesImpl &&
             (identical(other.headline, headline) ||
                 other.headline == headline) &&
-            const DeepCollectionEquality()
-                .equals(other._dailyForecasts, _dailyForecasts));
+            (identical(other.dailyForecasts, dailyForecasts) ||
+                other.dailyForecasts == dailyForecasts));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, headline,
-      const DeepCollectionEquality().hash(_dailyForecasts));
+  int get hashCode => Object.hash(runtimeType, headline, dailyForecasts);
 
   @JsonKey(ignore: true)
   @override
@@ -370,10 +377,9 @@ class _$TemperaturesImpl implements _Temperatures {
 }
 
 abstract class _Temperatures implements Temperatures {
-  factory _Temperatures(
-      @JsonKey(name: "Headline") final Headline headline,
-      @JsonKey(name: "DailyForecasts")
-      final List<DailyForecast> dailyForecasts) = _$TemperaturesImpl;
+  factory _Temperatures(@JsonKey(name: "Headline") final Headline headline,
+          @JsonKey(name: "DailyForecasts") final DailyForecast dailyForecasts) =
+      _$TemperaturesImpl;
 
   factory _Temperatures.fromJson(Map<String, dynamic> json) =
       _$TemperaturesImpl.fromJson;
@@ -383,7 +389,7 @@ abstract class _Temperatures implements Temperatures {
   Headline get headline;
   @override
   @JsonKey(name: "DailyForecasts")
-  List<DailyForecast> get dailyForecasts;
+  DailyForecast get dailyForecasts;
   @override
   @JsonKey(ignore: true)
   _$$TemperaturesImplCopyWith<_$TemperaturesImpl> get copyWith =>

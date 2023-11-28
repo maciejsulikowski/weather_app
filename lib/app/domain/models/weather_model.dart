@@ -9,7 +9,7 @@ class WeatherModel with _$WeatherModel {
    factory WeatherModel(
     @JsonKey(name: "Headline")  Headline headline,
     @JsonKey(name: "DailyForecasts")
-     List<DailyForecast> dailyForecasts,
+     DailyForecast dailyForecasts,
   ) = _WeatherModel;
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) =>
@@ -21,7 +21,7 @@ class Temperatures with _$Temperatures {
    factory Temperatures(
     @JsonKey(name: "Headline")  Headline headline,
     @JsonKey(name: "DailyForecasts")
-     List<DailyForecast> dailyForecasts,
+     DailyForecast dailyForecasts,
   ) = _Temperatures;
 
   factory Temperatures.fromJson(Map<String, dynamic> json) =>

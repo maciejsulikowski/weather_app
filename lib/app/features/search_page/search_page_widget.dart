@@ -20,15 +20,11 @@ TextEditingController controller = TextEditingController();
 bool isButtonClicked = false;
 var cityMessage = '';
 
+
 class _SearchCityState extends State<SearchCity> {
   @override
   Widget build(BuildContext context) {
-    // @override
-    // void toogleButton() {
-    //   setState(() {
-    //     isButtonClicked = !isButtonClicked;
-    //   });
-    // }
+    
 
     return BlocProvider(
       create: (context) => SearchPageCubit(SearchRepository(

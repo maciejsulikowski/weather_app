@@ -26,6 +26,7 @@ class SearchRepository {
       return null;
     }
 
-    return WeatherModel.fromJson(json);
+     return WeatherModel.fromJson(json);
+    // return json.map((item) => WeatherModel.fromJson(item)).toList();
   }
 }

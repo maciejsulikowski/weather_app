@@ -9,9 +9,7 @@ part of 'weather_model.dart';
 _$WeatherModelImpl _$$WeatherModelImplFromJson(Map<String, dynamic> json) =>
     _$WeatherModelImpl(
       Headline.fromJson(json['Headline'] as Map<String, dynamic>),
-      (json['DailyForecasts'] as List<dynamic>)
-          .map((e) => DailyForecast.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      DailyForecast.fromJson(json['DailyForecasts'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$WeatherModelImplToJson(_$WeatherModelImpl instance) =>
@@ -23,9 +21,7 @@ Map<String, dynamic> _$$WeatherModelImplToJson(_$WeatherModelImpl instance) =>
 _$TemperaturesImpl _$$TemperaturesImplFromJson(Map<String, dynamic> json) =>
     _$TemperaturesImpl(
       Headline.fromJson(json['Headline'] as Map<String, dynamic>),
-      (json['DailyForecasts'] as List<dynamic>)
-          .map((e) => DailyForecast.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      DailyForecast.fromJson(json['DailyForecasts'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TemperaturesImplToJson(_$TemperaturesImpl instance) =>
