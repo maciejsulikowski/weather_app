@@ -26,6 +26,8 @@ class CountryModel with _$CountryModel {
       _$CountryModelFromJson(json);
 }
 
+
+
 // @JsonSerializable()
 // class SearchModel {
 //   @JsonKey(name: 'Key')

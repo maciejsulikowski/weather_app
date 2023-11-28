@@ -159,7 +159,7 @@ class _SearchCityState extends State<SearchCity> {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const WeatherWidget(),
+                                            WeatherWidget(searchModel: city),
                                       ),
                                     );
                                   },

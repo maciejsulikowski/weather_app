@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/domain/models/search_model.dart';
+import 'package:weather_app/app/domain/models/weather_model.dart';
 import 'package:weather_app/app/features/weather_page/animation_weather_widget.dart';
 import 'package:weather_app/app/features/weather_page/basic_information_weather_widget.dart';
 import 'package:weather_app/app/features/weather_page/days_widget.dart';
@@ -7,11 +9,15 @@ import 'package:weather_app/app/features/weather_page/text_around_details_widget
 
 class WeatherWidget extends StatelessWidget {
   const WeatherWidget({
+    required this.searchModel,
     super.key,
   });
 
+  final SearchModel searchModel;
+
   @override
   Widget build(BuildContext context) {
+    final WeatherModel weatherModel;
     return Scaffold(
         body: SafeArea(
       child: ListView(
@@ -46,7 +52,7 @@ class WeatherWidget extends StatelessWidget {
                               },
                               icon: const Icon(Icons.arrow_back)),
                         ),
-                        Text('City',
+                        Text(searchModel.localizedName,
                             style: GoogleFonts.aBeeZee(
                               fontSize: 40,
                               color: Colors.white,

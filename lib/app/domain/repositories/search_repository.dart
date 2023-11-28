@@ -8,7 +8,6 @@ class SearchRepository {
 
   Future<List<SearchModel>> getWeatherModel(String city) async {
     final json = await remoteDataSource.weatherData(city);
-    // print('Json: $json');
 
     if (json == null) {
       return [];
@@ -16,7 +15,18 @@ class SearchRepository {
 
     final allCities = json.map((item) => SearchModel.fromJson(item)).toList();
 
-  
     return allCities.where((element) => element.localizedName == city).toList();
   }
+
+  // Future<SearchModel> getForecastModel(String key) async {
+  //   final json = await remoteDataSource.forecastData(key);
+
+  //   if (json == null) {
+  //     return [];
+  //   }
+
+  //   final allCities = json.map((item) => SearchModel.fromJson(item)).toList();
+
+  //   return allCities.where((element) => element.localizedName == city).toList();
+  // }
 }
