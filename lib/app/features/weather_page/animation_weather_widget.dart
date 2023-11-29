@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:weather_app/app/domain/models/weather_model.dart';
 
 class AnimationWeatherWidget extends StatelessWidget {
   const AnimationWeatherWidget({
+    required this.weatherModel,
     super.key,
   });
+
+  final WeatherModel? weatherModel;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class AnimationWeatherWidget extends StatelessWidget {
       width: 250,
       child: Stack(
         children: [
-          Text('27°C',
+          Text(weatherModel!.dailyForecasts[0].date.toString(),
               style: GoogleFonts.aBeeZee(
                 fontSize: 96,
                 color: Colors.white,

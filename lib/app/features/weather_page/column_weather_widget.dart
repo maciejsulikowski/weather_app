@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/domain/models/weather_model.dart';
 import 'package:weather_app/app/features/weather_page/details_widget.dart';
 
 class ColumnWeatherWidget extends StatelessWidget {
   const ColumnWeatherWidget({
+    required this.weatherModel,
     super.key,
   });
+
+  final WeatherModel? weatherModel;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: ((context) => const DetailsWidget())));
+            MaterialPageRoute(builder: ((context) => DetailsWidget(weatherModel: weatherModel,))));
       },
       child: Container(
         decoration: BoxDecoration(

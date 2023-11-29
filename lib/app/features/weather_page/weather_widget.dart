@@ -82,26 +82,32 @@ class WeatherWidget extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        if (state.weatherModel == null) Text('Null'),
-                        if (state.weatherModel != null)
-                          Text(state.weatherModel!.headline.category,
-                              style: GoogleFonts.aBeeZee(
-                                fontSize: 18,
-                                color: Colors.white,
-                              )),
+                        state.weatherModel == null
+                            ? const Text('?')
+                            : Text(state.weatherModel!.headline.category,
+                                style: GoogleFonts.aBeeZee(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                )),
                         const SizedBox(
                           height: 10,
                         ),
-                        const AnimationWeatherWidget(),
+                        AnimationWeatherWidget(
+                          weatherModel: state.weatherModel,
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
-                        Text('Monday, 10 October | 10:00',
-                            style: GoogleFonts.aBeeZee(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            )),
+                        state.weatherModel == null
+                            ? const Text('?')
+                            : Text(
+                                state.weatherModel!.dailyForecasts[0].date
+                                    .toIso8601String(),
+                                style: GoogleFonts.aBeeZee(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                )),
                         const SizedBox(
                           height: 10,
                         ),
@@ -113,7 +119,11 @@ class WeatherWidget extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        const DaysWidget()
+                        state.weatherModel == null
+                            ? const Text('?')
+                            : DaysWidget(
+                                weatherModel: state.weatherModel,
+                              )
                       ],
                     ),
                   ),

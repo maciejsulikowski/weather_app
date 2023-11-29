@@ -22,6 +22,8 @@ WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) {
 mixin _$WeatherModel {
   @JsonKey(name: "Headline")
   Headline get headline => throw _privateConstructorUsedError;
+  @JsonKey(name: "DailyForecasts")
+  List<DailyForecasts> get dailyForecasts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +37,9 @@ abstract class $WeatherModelCopyWith<$Res> {
           WeatherModel value, $Res Function(WeatherModel) then) =
       _$WeatherModelCopyWithImpl<$Res, WeatherModel>;
   @useResult
-  $Res call({@JsonKey(name: "Headline") Headline headline});
+  $Res call(
+      {@JsonKey(name: "Headline") Headline headline,
+      @JsonKey(name: "DailyForecasts") List<DailyForecasts> dailyForecasts});
 
   $HeadlineCopyWith<$Res> get headline;
 }
@@ -54,12 +58,17 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
   @override
   $Res call({
     Object? headline = null,
+    Object? dailyForecasts = null,
   }) {
     return _then(_value.copyWith(
       headline: null == headline
           ? _value.headline
           : headline // ignore: cast_nullable_to_non_nullable
               as Headline,
+      dailyForecasts: null == dailyForecasts
+          ? _value.dailyForecasts
+          : dailyForecasts // ignore: cast_nullable_to_non_nullable
+              as List<DailyForecasts>,
     ) as $Val);
   }
 
@@ -80,7 +89,9 @@ abstract class _$$WeatherModelImplCopyWith<$Res>
       __$$WeatherModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "Headline") Headline headline});
+  $Res call(
+      {@JsonKey(name: "Headline") Headline headline,
+      @JsonKey(name: "DailyForecasts") List<DailyForecasts> dailyForecasts});
 
   @override
   $HeadlineCopyWith<$Res> get headline;
@@ -98,12 +109,17 @@ class __$$WeatherModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? headline = null,
+    Object? dailyForecasts = null,
   }) {
     return _then(_$WeatherModelImpl(
       null == headline
           ? _value.headline
           : headline // ignore: cast_nullable_to_non_nullable
               as Headline,
+      null == dailyForecasts
+          ? _value._dailyForecasts
+          : dailyForecasts // ignore: cast_nullable_to_non_nullable
+              as List<DailyForecasts>,
     ));
   }
 }
@@ -111,7 +127,11 @@ class __$$WeatherModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WeatherModelImpl implements _WeatherModel {
-  _$WeatherModelImpl(@JsonKey(name: "Headline") this.headline);
+  _$WeatherModelImpl(
+      @JsonKey(name: "Headline") this.headline,
+      @JsonKey(name: "DailyForecasts")
+      final List<DailyForecasts> dailyForecasts)
+      : _dailyForecasts = dailyForecasts;
 
   factory _$WeatherModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherModelImplFromJson(json);
@@ -119,10 +139,18 @@ class _$WeatherModelImpl implements _WeatherModel {
   @override
   @JsonKey(name: "Headline")
   final Headline headline;
+  final List<DailyForecasts> _dailyForecasts;
+  @override
+  @JsonKey(name: "DailyForecasts")
+  List<DailyForecasts> get dailyForecasts {
+    if (_dailyForecasts is EqualUnmodifiableListView) return _dailyForecasts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dailyForecasts);
+  }
 
   @override
   String toString() {
-    return 'WeatherModel(headline: $headline)';
+    return 'WeatherModel(headline: $headline, dailyForecasts: $dailyForecasts)';
   }
 
   @override
@@ -131,12 +159,15 @@ class _$WeatherModelImpl implements _WeatherModel {
         (other.runtimeType == runtimeType &&
             other is _$WeatherModelImpl &&
             (identical(other.headline, headline) ||
-                other.headline == headline));
+                other.headline == headline) &&
+            const DeepCollectionEquality()
+                .equals(other._dailyForecasts, _dailyForecasts));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, headline);
+  int get hashCode => Object.hash(runtimeType, headline,
+      const DeepCollectionEquality().hash(_dailyForecasts));
 
   @JsonKey(ignore: true)
   @override
@@ -153,8 +184,10 @@ class _$WeatherModelImpl implements _WeatherModel {
 }
 
 abstract class _WeatherModel implements WeatherModel {
-  factory _WeatherModel(@JsonKey(name: "Headline") final Headline headline) =
-      _$WeatherModelImpl;
+  factory _WeatherModel(
+      @JsonKey(name: "Headline") final Headline headline,
+      @JsonKey(name: "DailyForecasts")
+      final List<DailyForecasts> dailyForecasts) = _$WeatherModelImpl;
 
   factory _WeatherModel.fromJson(Map<String, dynamic> json) =
       _$WeatherModelImpl.fromJson;
@@ -162,6 +195,9 @@ abstract class _WeatherModel implements WeatherModel {
   @override
   @JsonKey(name: "Headline")
   Headline get headline;
+  @override
+  @JsonKey(name: "DailyForecasts")
+  List<DailyForecasts> get dailyForecasts;
   @override
   @JsonKey(ignore: true)
   _$$WeatherModelImplCopyWith<_$WeatherModelImpl> get copyWith =>
@@ -507,5 +543,475 @@ abstract class _Headline implements Headline {
   @override
   @JsonKey(ignore: true)
   _$$HeadlineImplCopyWith<_$HeadlineImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DailyForecasts _$DailyForecastsFromJson(Map<String, dynamic> json) {
+  return _DailyForecasts.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DailyForecasts {
+  @JsonKey(name: "Date")
+  DateTime get date =>
+      throw _privateConstructorUsedError; // @JsonKey(name: "EpochDate") int epochDate,
+  @JsonKey(name: "Temperature")
+  Temperature get temperature => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DailyForecastsCopyWith<DailyForecasts> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DailyForecastsCopyWith<$Res> {
+  factory $DailyForecastsCopyWith(
+          DailyForecasts value, $Res Function(DailyForecasts) then) =
+      _$DailyForecastsCopyWithImpl<$Res, DailyForecasts>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "Date") DateTime date,
+      @JsonKey(name: "Temperature") Temperature temperature});
+
+  $TemperatureCopyWith<$Res> get temperature;
+}
+
+/// @nodoc
+class _$DailyForecastsCopyWithImpl<$Res, $Val extends DailyForecasts>
+    implements $DailyForecastsCopyWith<$Res> {
+  _$DailyForecastsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+    Object? temperature = null,
+  }) {
+    return _then(_value.copyWith(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as Temperature,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TemperatureCopyWith<$Res> get temperature {
+    return $TemperatureCopyWith<$Res>(_value.temperature, (value) {
+      return _then(_value.copyWith(temperature: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$DailyForecastsImplCopyWith<$Res>
+    implements $DailyForecastsCopyWith<$Res> {
+  factory _$$DailyForecastsImplCopyWith(_$DailyForecastsImpl value,
+          $Res Function(_$DailyForecastsImpl) then) =
+      __$$DailyForecastsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "Date") DateTime date,
+      @JsonKey(name: "Temperature") Temperature temperature});
+
+  @override
+  $TemperatureCopyWith<$Res> get temperature;
+}
+
+/// @nodoc
+class __$$DailyForecastsImplCopyWithImpl<$Res>
+    extends _$DailyForecastsCopyWithImpl<$Res, _$DailyForecastsImpl>
+    implements _$$DailyForecastsImplCopyWith<$Res> {
+  __$$DailyForecastsImplCopyWithImpl(
+      _$DailyForecastsImpl _value, $Res Function(_$DailyForecastsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+    Object? temperature = null,
+  }) {
+    return _then(_$DailyForecastsImpl(
+      null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as Temperature,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DailyForecastsImpl implements _DailyForecasts {
+  _$DailyForecastsImpl(@JsonKey(name: "Date") this.date,
+      @JsonKey(name: "Temperature") this.temperature);
+
+  factory _$DailyForecastsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DailyForecastsImplFromJson(json);
+
+  @override
+  @JsonKey(name: "Date")
+  final DateTime date;
+// @JsonKey(name: "EpochDate") int epochDate,
+  @override
+  @JsonKey(name: "Temperature")
+  final Temperature temperature;
+
+  @override
+  String toString() {
+    return 'DailyForecasts(date: $date, temperature: $temperature)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DailyForecastsImpl &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, date, temperature);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DailyForecastsImplCopyWith<_$DailyForecastsImpl> get copyWith =>
+      __$$DailyForecastsImplCopyWithImpl<_$DailyForecastsImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DailyForecastsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DailyForecasts implements DailyForecasts {
+  factory _DailyForecasts(@JsonKey(name: "Date") final DateTime date,
+          @JsonKey(name: "Temperature") final Temperature temperature) =
+      _$DailyForecastsImpl;
+
+  factory _DailyForecasts.fromJson(Map<String, dynamic> json) =
+      _$DailyForecastsImpl.fromJson;
+
+  @override
+  @JsonKey(name: "Date")
+  DateTime get date;
+  @override // @JsonKey(name: "EpochDate") int epochDate,
+  @JsonKey(name: "Temperature")
+  Temperature get temperature;
+  @override
+  @JsonKey(ignore: true)
+  _$$DailyForecastsImplCopyWith<_$DailyForecastsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Temperature _$TemperatureFromJson(Map<String, dynamic> json) {
+  return _Temperature.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Temperature {
+  @JsonKey(name: "Minimum")
+  Minimum get minimum => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TemperatureCopyWith<Temperature> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TemperatureCopyWith<$Res> {
+  factory $TemperatureCopyWith(
+          Temperature value, $Res Function(Temperature) then) =
+      _$TemperatureCopyWithImpl<$Res, Temperature>;
+  @useResult
+  $Res call({@JsonKey(name: "Minimum") Minimum minimum});
+
+  $MinimumCopyWith<$Res> get minimum;
+}
+
+/// @nodoc
+class _$TemperatureCopyWithImpl<$Res, $Val extends Temperature>
+    implements $TemperatureCopyWith<$Res> {
+  _$TemperatureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? minimum = null,
+  }) {
+    return _then(_value.copyWith(
+      minimum: null == minimum
+          ? _value.minimum
+          : minimum // ignore: cast_nullable_to_non_nullable
+              as Minimum,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MinimumCopyWith<$Res> get minimum {
+    return $MinimumCopyWith<$Res>(_value.minimum, (value) {
+      return _then(_value.copyWith(minimum: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$TemperatureImplCopyWith<$Res>
+    implements $TemperatureCopyWith<$Res> {
+  factory _$$TemperatureImplCopyWith(
+          _$TemperatureImpl value, $Res Function(_$TemperatureImpl) then) =
+      __$$TemperatureImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: "Minimum") Minimum minimum});
+
+  @override
+  $MinimumCopyWith<$Res> get minimum;
+}
+
+/// @nodoc
+class __$$TemperatureImplCopyWithImpl<$Res>
+    extends _$TemperatureCopyWithImpl<$Res, _$TemperatureImpl>
+    implements _$$TemperatureImplCopyWith<$Res> {
+  __$$TemperatureImplCopyWithImpl(
+      _$TemperatureImpl _value, $Res Function(_$TemperatureImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? minimum = null,
+  }) {
+    return _then(_$TemperatureImpl(
+      null == minimum
+          ? _value.minimum
+          : minimum // ignore: cast_nullable_to_non_nullable
+              as Minimum,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TemperatureImpl implements _Temperature {
+  _$TemperatureImpl(@JsonKey(name: "Minimum") this.minimum);
+
+  factory _$TemperatureImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TemperatureImplFromJson(json);
+
+  @override
+  @JsonKey(name: "Minimum")
+  final Minimum minimum;
+
+  @override
+  String toString() {
+    return 'Temperature(minimum: $minimum)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemperatureImpl &&
+            (identical(other.minimum, minimum) || other.minimum == minimum));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, minimum);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemperatureImplCopyWith<_$TemperatureImpl> get copyWith =>
+      __$$TemperatureImplCopyWithImpl<_$TemperatureImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TemperatureImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Temperature implements Temperature {
+  factory _Temperature(@JsonKey(name: "Minimum") final Minimum minimum) =
+      _$TemperatureImpl;
+
+  factory _Temperature.fromJson(Map<String, dynamic> json) =
+      _$TemperatureImpl.fromJson;
+
+  @override
+  @JsonKey(name: "Minimum")
+  Minimum get minimum;
+  @override
+  @JsonKey(ignore: true)
+  _$$TemperatureImplCopyWith<_$TemperatureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Minimum _$MinimumFromJson(Map<String, dynamic> json) {
+  return _Minimum.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Minimum {
+  @JsonKey(name: "Value")
+  int get value => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MinimumCopyWith<Minimum> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MinimumCopyWith<$Res> {
+  factory $MinimumCopyWith(Minimum value, $Res Function(Minimum) then) =
+      _$MinimumCopyWithImpl<$Res, Minimum>;
+  @useResult
+  $Res call({@JsonKey(name: "Value") int value});
+}
+
+/// @nodoc
+class _$MinimumCopyWithImpl<$Res, $Val extends Minimum>
+    implements $MinimumCopyWith<$Res> {
+  _$MinimumCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MinimumImplCopyWith<$Res> implements $MinimumCopyWith<$Res> {
+  factory _$$MinimumImplCopyWith(
+          _$MinimumImpl value, $Res Function(_$MinimumImpl) then) =
+      __$$MinimumImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: "Value") int value});
+}
+
+/// @nodoc
+class __$$MinimumImplCopyWithImpl<$Res>
+    extends _$MinimumCopyWithImpl<$Res, _$MinimumImpl>
+    implements _$$MinimumImplCopyWith<$Res> {
+  __$$MinimumImplCopyWithImpl(
+      _$MinimumImpl _value, $Res Function(_$MinimumImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$MinimumImpl(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$MinimumImpl implements _Minimum {
+  _$MinimumImpl(@JsonKey(name: "Value") this.value);
+
+  factory _$MinimumImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MinimumImplFromJson(json);
+
+  @override
+  @JsonKey(name: "Value")
+  final int value;
+
+  @override
+  String toString() {
+    return 'Minimum(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MinimumImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MinimumImplCopyWith<_$MinimumImpl> get copyWith =>
+      __$$MinimumImplCopyWithImpl<_$MinimumImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MinimumImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Minimum implements Minimum {
+  factory _Minimum(@JsonKey(name: "Value") final int value) = _$MinimumImpl;
+
+  factory _Minimum.fromJson(Map<String, dynamic> json) = _$MinimumImpl.fromJson;
+
+  @override
+  @JsonKey(name: "Value")
+  int get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$MinimumImplCopyWith<_$MinimumImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

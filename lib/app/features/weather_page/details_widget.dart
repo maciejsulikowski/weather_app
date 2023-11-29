@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/domain/models/weather_model.dart';
 import 'package:weather_app/app/features/weather_page/animation_weather_widget.dart';
 import 'package:weather_app/app/features/weather_page/basic_information_weather_widget.dart';
 
 class DetailsWidget extends StatelessWidget {
   const DetailsWidget({
+    required this.weatherModel,
     super.key,
   });
+
+  final WeatherModel? weatherModel;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +75,7 @@ class DetailsWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const AnimationWeatherWidget(),
+                   AnimationWeatherWidget(weatherModel: weatherModel,),
                   const SizedBox(
                     height: 10,
                   ),

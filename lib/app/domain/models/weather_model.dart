@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'weather_model.g.dart';
 part 'weather_model.freezed.dart';
 
@@ -8,7 +7,7 @@ part 'weather_model.freezed.dart';
 class WeatherModel with _$WeatherModel {
   factory WeatherModel(
     @JsonKey(name: "Headline") Headline headline,
-    // @JsonKey(name: "DailyForecasts") List<DailyForecast> dailyForecasts,
+    @JsonKey(name: "DailyForecasts") List<DailyForecasts> dailyForecasts,
   ) = _WeatherModel;
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) =>
@@ -33,6 +32,42 @@ class Headline with _$Headline {
       _$HeadlineFromJson(json);
 }
 
+@freezed
+class DailyForecasts with _$DailyForecasts {
+  factory DailyForecasts(
+    @JsonKey(name: "Date") DateTime date,
+    // @JsonKey(name: "EpochDate") int epochDate,
+    @JsonKey(name: "Temperature") Temperature temperature,
+    // @JsonKey(name: "Day") Day day,
+    // @JsonKey(name: "Night") Day night,
+    // @JsonKey(name: "Sources") List<String> sources,
+    // @JsonKey(name: "MobileLink") String mobileLink,
+    // @JsonKey(name: "Link") String link,
+  ) = _DailyForecasts;
+
+  factory DailyForecasts.fromJson(Map<String, dynamic> json) =>
+      _$DailyForecastsFromJson(json);
+}
+
+@freezed
+class Temperature with _$Temperature {
+  factory Temperature(
+    @JsonKey(name: "Minimum") Minimum minimum,
+  ) = _Temperature;
+  factory Temperature.fromJson(Map<String, dynamic> json) =>
+      _$TemperatureFromJson(json);
+}
+
+@freezed
+class Minimum with _$Minimum {
+  factory Minimum(
+    @JsonKey(name: "Value") int value,
+  ) = _Minimum;
+
+  factory Minimum.fromJson(Map<String, dynamic> json) =>
+      _$MinimumFromJson(json);
+}
+
 // @freezed
 // class Temperatures with _$Temperatures {
 //    factory Temperatures(
@@ -45,22 +80,7 @@ class Headline with _$Headline {
 //       _$TemperaturesFromJson(json);
 // }
 
-// @freezed
-// class DailyForecast with _$DailyForecast {
-//    factory DailyForecast(
-//     @JsonKey(name: "Date")  DateTime date,
-//     @JsonKey(name: "EpochDate")  int epochDate,
-//     @JsonKey(name: "Temperature")  Temperature temperature,
-//     @JsonKey(name: "Day")  Day day,
-//     @JsonKey(name: "Night")  Day night,
-//     @JsonKey(name: "Sources")  List<String> sources,
-//     @JsonKey(name: "MobileLink")  String mobileLink,
-//     @JsonKey(name: "Link")  String link,
-//   ) = _DailyForecast;
 
-//   factory DailyForecast.fromJson(Map<String, dynamic> json) =>
-//       _$DailyForecastFromJson(json);
-// }
 
 // @freezed
 // class Day with _$Day {
@@ -76,24 +96,8 @@ class Headline with _$Headline {
 //       _$DayFromJson(json);
 // }
 
-// @freezed
-// class Temperature with _$Temperature {
-//    factory Temperature(
-//     @JsonKey(name: "Minimum")  Imum minimum,
-//     @JsonKey(name: "Maximum")  Imum maximum,
-//   ) = _Temperature;
-//    factory Temperature.fromJson(Map<String, dynamic> json) => _$TemperatureFromJson(json);
-// }
 
-// @freezed
-// class Imum with _$Imum {
-//    factory Imum(
-//     @JsonKey(name: "Value")  int value,
-//     @JsonKey(name: "Unit")  String unit,
-//     @JsonKey(name: "UnitType")  int unitType,
-//   ) = _Imum;
 
-//   factory Imum.fromJson(Map<String, dynamic> json) => _$ImumFromJson(json);
-// }
+
 
 
