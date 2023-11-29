@@ -63,7 +63,7 @@ class WeatherWidget extends StatelessWidget {
                                     },
                                     icon: const Icon(Icons.arrow_back)),
                               ),
-                              Text(searchModel.key,
+                              Text(cityKey,
                                   style: GoogleFonts.aBeeZee(
                                     fontSize: 40,
                                     color: Colors.white,
@@ -82,13 +82,13 @@ class WeatherWidget extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(
-                            state.dailyForecast!.dailyForecasts.temperature
-                                .maximum.unit,
-                            style: GoogleFonts.aBeeZee(
-                              fontSize: 18,
-                              color: Colors.white,
-                            )),
+                        if (state.weatherModel == null) Text('Null'),
+                        if (state.weatherModel != null)
+                          Text(state.weatherModel!.headline.category,
+                              style: GoogleFonts.aBeeZee(
+                                fontSize: 18,
+                                color: Colors.white,
+                              )),
                         const SizedBox(
                           height: 10,
                         ),

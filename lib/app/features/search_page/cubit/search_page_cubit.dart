@@ -16,6 +16,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   Future<void> searchCity(String city) async {
     final cities = await searchRepository.getWeatherModel(city);
    
+   
     emit(const SearchPageState(
       status: Status.loading,
     ));

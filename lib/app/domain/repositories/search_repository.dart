@@ -22,11 +22,12 @@ class SearchRepository {
   Future<WeatherModel?> getForecastModel(String key) async {
     final json = await remoteDataSource.forecastData(key);
 
+  
     if (json == null) {
       return null;
     }
 
-     return WeatherModel.fromJson(json);
+    return WeatherModel.fromJson(json);
     // return json.map((item) => WeatherModel.fromJson(item)).toList();
   }
 }

@@ -3,12 +3,12 @@ part of 'weather_cubit.dart';
 @immutable
 class WeatherState {
   const WeatherState({
-    this.dailyForecast,
+    this.weatherModel,
     this.status = Status.initial,
     this.errorMessage,
   });
 
-  final WeatherModel? dailyForecast;
+  final WeatherModel? weatherModel;
   final Status status;
   final String? errorMessage;
 }
