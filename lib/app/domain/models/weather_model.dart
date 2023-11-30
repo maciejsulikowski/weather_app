@@ -61,7 +61,7 @@ class Temperature with _$Temperature {
 @freezed
 class Minimum with _$Minimum {
   factory Minimum(
-    @JsonKey(name: "Value") int value,
+    @JsonKey(name: "Value") double value,
   ) = _Minimum;
 
   factory Minimum.fromJson(Map<String, dynamic> json) =>

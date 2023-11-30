@@ -5,18 +5,18 @@ import 'package:weather_app/app/features/weather_page/details_widget.dart';
 
 class ColumnWeatherWidget extends StatelessWidget {
   const ColumnWeatherWidget({
-    required this.weatherModel,
+   
     super.key,
   });
 
-  final WeatherModel? weatherModel;
+  
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: ((context) => DetailsWidget(weatherModel: weatherModel,))));
+            MaterialPageRoute(builder: ((context) => DetailsWidget())));
       },
       child: Container(
         decoration: BoxDecoration(

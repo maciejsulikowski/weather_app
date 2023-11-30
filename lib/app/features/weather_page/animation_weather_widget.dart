@@ -4,26 +4,36 @@ import 'package:lottie/lottie.dart';
 import 'package:weather_app/app/domain/models/weather_model.dart';
 
 class AnimationWeatherWidget extends StatelessWidget {
-  const AnimationWeatherWidget({
-    required this.weatherModel,
+  const AnimationWeatherWidget(
+    this.temp, {
     super.key,
   });
 
-  final WeatherModel? weatherModel;
+  final String temp;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 350,
-      width: 250,
+      width: double.infinity,
       child: Stack(
         children: [
-          Text(weatherModel!.dailyForecasts[0].date.toString(),
-              style: GoogleFonts.aBeeZee(
-                fontSize: 96,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(temp,
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 96,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  )),
+              Text('°C',
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 60,
+                    color: Colors.white,
+                  )),
+            ],
+          ),
           Positioned(
             top: 80,
             child: Container(

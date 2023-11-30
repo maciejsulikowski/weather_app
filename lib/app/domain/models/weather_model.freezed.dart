@@ -888,7 +888,7 @@ Minimum _$MinimumFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Minimum {
   @JsonKey(name: "Value")
-  int get value => throw _privateConstructorUsedError;
+  double get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -900,7 +900,7 @@ abstract class $MinimumCopyWith<$Res> {
   factory $MinimumCopyWith(Minimum value, $Res Function(Minimum) then) =
       _$MinimumCopyWithImpl<$Res, Minimum>;
   @useResult
-  $Res call({@JsonKey(name: "Value") int value});
+  $Res call({@JsonKey(name: "Value") double value});
 }
 
 /// @nodoc
@@ -922,7 +922,7 @@ class _$MinimumCopyWithImpl<$Res, $Val extends Minimum>
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -934,7 +934,7 @@ abstract class _$$MinimumImplCopyWith<$Res> implements $MinimumCopyWith<$Res> {
       __$$MinimumImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "Value") int value});
+  $Res call({@JsonKey(name: "Value") double value});
 }
 
 /// @nodoc
@@ -954,7 +954,7 @@ class __$$MinimumImplCopyWithImpl<$Res>
       null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -969,7 +969,7 @@ class _$MinimumImpl implements _Minimum {
 
   @override
   @JsonKey(name: "Value")
-  final int value;
+  final double value;
 
   @override
   String toString() {
@@ -1003,13 +1003,13 @@ class _$MinimumImpl implements _Minimum {
 }
 
 abstract class _Minimum implements Minimum {
-  factory _Minimum(@JsonKey(name: "Value") final int value) = _$MinimumImpl;
+  factory _Minimum(@JsonKey(name: "Value") final double value) = _$MinimumImpl;
 
   factory _Minimum.fromJson(Map<String, dynamic> json) = _$MinimumImpl.fromJson;
 
   @override
   @JsonKey(name: "Value")
-  int get value;
+  double get value;
   @override
   @JsonKey(ignore: true)
   _$$MinimumImplCopyWith<_$MinimumImpl> get copyWith =>

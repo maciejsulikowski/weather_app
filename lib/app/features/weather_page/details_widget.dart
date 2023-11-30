@@ -6,11 +6,8 @@ import 'package:weather_app/app/features/weather_page/basic_information_weather_
 
 class DetailsWidget extends StatelessWidget {
   const DetailsWidget({
-    required this.weatherModel,
     super.key,
   });
-
-  final WeatherModel? weatherModel;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +72,7 @@ class DetailsWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                   AnimationWeatherWidget(weatherModel: weatherModel,),
+                  AnimationWeatherWidget(''),
                   const SizedBox(
                     height: 10,
                   ),

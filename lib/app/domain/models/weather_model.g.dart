@@ -71,7 +71,7 @@ Map<String, dynamic> _$$TemperatureImplToJson(_$TemperatureImpl instance) =>
 
 _$MinimumImpl _$$MinimumImplFromJson(Map<String, dynamic> json) =>
     _$MinimumImpl(
-      json['Value'] as int,
+      (json['Value'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$MinimumImplToJson(_$MinimumImpl instance) =>
