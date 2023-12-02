@@ -30,6 +30,10 @@ class WeatherWidget extends StatelessWidget {
           SearchRepository(dataSource: SearchDataSource(), WeatherDataSource()))
         ..getForecast(cityKey),
       child: BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
+        if (state.status == Status.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+      
         return MaterialApp(
           home: Scaffold(
               body: SafeArea(

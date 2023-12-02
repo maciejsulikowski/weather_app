@@ -37,16 +37,61 @@ class AnimationWeatherWidget extends StatelessWidget {
                   )),
             ],
           ),
-          Positioned(
-            top: 70,
-            left: 60,
-            right: 60,
-            child: Container(
-              child: Lottie.asset(
-                'images/animation_2.json',
+          if (celsius < 25 && celsius > 15)
+            Positioned(
+              top: 70,
+              left: 60,
+              right: 60,
+              child: Container(
+                child: Lottie.asset(
+                  'images/animation_5.json',
+                ),
               ),
             ),
-          )
+          if (celsius < 15 && celsius > 10)
+            Positioned(
+              top: 70,
+              left: 60,
+              right: 60,
+              child: Container(
+                child: Lottie.asset(
+                  'images/animation_4.json',
+                ),
+              ),
+            ),
+          if (celsius < 10 && celsius > 5)
+            Positioned(
+              top: 70,
+              left: 60,
+              right: 60,
+              child: Container(
+                child: Lottie.asset(
+                  'images/animation_1.json',
+                ),
+              ),
+            ),
+          if (celsius < 5 && celsius > 0)
+            Positioned(
+              top: 70,
+              left: 60,
+              right: 60,
+              child: Container(
+                child: Lottie.asset(
+                  'images/animation_2.json',
+                ),
+              ),
+            ),
+          if (celsius < 0)
+            Positioned(
+              top: 70,
+              left: 60,
+              right: 60,
+              child: Container(
+                child: Lottie.asset(
+                  'images/animation_3.json',
+                ),
+              ),
+            )
         ],
       ),
     );
