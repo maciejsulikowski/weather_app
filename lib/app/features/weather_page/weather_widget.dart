@@ -11,6 +11,7 @@ import 'package:weather_app/app/features/weather_page/basic_information_weather_
 import 'package:weather_app/app/features/weather_page/cubit/weather_cubit.dart';
 import 'package:weather_app/app/features/weather_page/days_widget.dart';
 import 'package:weather_app/app/features/weather_page/text_around_details_widget.dart';
+import 'package:intl/intl.dart';
 
 class WeatherWidget extends StatelessWidget {
   const WeatherWidget({
@@ -23,7 +24,6 @@ class WeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cityKey = searchModel.key;
-    
 
     return BlocProvider(
       create: (context) => WeatherCubit(
@@ -107,8 +107,8 @@ class WeatherWidget extends StatelessWidget {
                         state.weatherModel == null
                             ? const Text('?')
                             : Text(
-                                state.weatherModel!.dailyForecasts[0].date
-                                    .toString(),
+                                state.weatherModel!.dailyForecasts[0]
+                                    .dateFormatted,
                                 style: GoogleFonts.aBeeZee(
                                   fontSize: 16,
                                   color: Colors.white,

@@ -659,9 +659,10 @@ class __$$DailyForecastsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DailyForecastsImpl implements _DailyForecasts {
+class _$DailyForecastsImpl extends _DailyForecasts {
   _$DailyForecastsImpl(@JsonKey(name: "Date") this.date,
-      @JsonKey(name: "Temperature") this.temperature);
+      @JsonKey(name: "Temperature") this.temperature)
+      : super._();
 
   factory _$DailyForecastsImpl.fromJson(Map<String, dynamic> json) =>
       _$$DailyForecastsImplFromJson(json);
@@ -708,10 +709,11 @@ class _$DailyForecastsImpl implements _DailyForecasts {
   }
 }
 
-abstract class _DailyForecasts implements DailyForecasts {
+abstract class _DailyForecasts extends DailyForecasts {
   factory _DailyForecasts(@JsonKey(name: "Date") final DateTime date,
           @JsonKey(name: "Temperature") final Temperature temperature) =
       _$DailyForecastsImpl;
+  _DailyForecasts._() : super._();
 
   factory _DailyForecasts.fromJson(Map<String, dynamic> json) =
       _$DailyForecastsImpl.fromJson;

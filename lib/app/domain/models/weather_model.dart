@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'weather_model.g.dart';
 part 'weather_model.freezed.dart';
@@ -34,6 +35,7 @@ class Headline with _$Headline {
 
 @freezed
 class DailyForecasts with _$DailyForecasts {
+  const DailyForecasts._();
   factory DailyForecasts(
     @JsonKey(name: "Date") DateTime date,
     // @JsonKey(name: "EpochDate") int epochDate,
@@ -45,12 +47,12 @@ class DailyForecasts with _$DailyForecasts {
     // @JsonKey(name: "Link") String link,
   ) = _DailyForecasts;
 
+  String get dateFormatted {
+    return DateFormat.yMMMMEEEEd().format(date);
+  }
+
   factory DailyForecasts.fromJson(Map<String, dynamic> json) =>
       _$DailyForecastsFromJson(json);
-
-  String dateFormatted() {
-    return date.to
-  }
 }
 
 @freezed
