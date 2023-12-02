@@ -20,12 +20,9 @@ TextEditingController controller = TextEditingController();
 bool isButtonClicked = false;
 var cityMessage = '';
 
-
 class _SearchCityState extends State<SearchCity> {
   @override
   Widget build(BuildContext context) {
-    
-
     return BlocProvider(
       create: (context) => SearchPageCubit(SearchRepository(
           dataSource: SearchDataSource(), WeatherDataSource())),
@@ -41,10 +38,6 @@ class _SearchCityState extends State<SearchCity> {
         },
         child: BlocBuilder<SearchPageCubit, SearchPageState>(
           builder: (context, state) {
-            if (state.status == Status.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
             return Scaffold(
                 appBar: AppBar(),
                 body: SafeArea(

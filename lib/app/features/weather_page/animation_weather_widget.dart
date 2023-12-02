@@ -13,6 +13,9 @@ class AnimationWeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double fahrenHeit = double.parse(temp);
+    double celsius = (fahrenHeit - 32) * 5 / 9;
+
     return SizedBox(
       height: 350,
       width: double.infinity,
@@ -21,7 +24,7 @@ class AnimationWeatherWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(temp,
+              Text(celsius.toStringAsPrecision(2),
                   style: GoogleFonts.aBeeZee(
                     fontSize: 96,
                     color: Colors.white,
@@ -35,7 +38,9 @@ class AnimationWeatherWidget extends StatelessWidget {
             ],
           ),
           Positioned(
-            top: 80,
+            top: 70,
+            left: 60,
+            right: 60,
             child: Container(
               child: Lottie.asset(
                 'images/animation_2.json',

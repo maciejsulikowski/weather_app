@@ -47,6 +47,10 @@ class DailyForecasts with _$DailyForecasts {
 
   factory DailyForecasts.fromJson(Map<String, dynamic> json) =>
       _$DailyForecastsFromJson(json);
+
+  String dateFormatted() {
+    return date.to
+  }
 }
 
 @freezed

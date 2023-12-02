@@ -22,7 +22,6 @@ class SearchRepository {
   Future<WeatherModel?> getForecastModel(String key) async {
     final json = await remoteDataSource.forecastData(key);
 
-  
     if (json == null) {
       return null;
     }

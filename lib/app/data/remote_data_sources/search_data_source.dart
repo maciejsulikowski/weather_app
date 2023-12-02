@@ -228,7 +228,7 @@ class WeatherDataSource {
       if (listDynamic == null) {
         return null;
       }
-
+      
       return listDynamic.map((list) => list as Map<String, dynamic>).toList();
     } on DioException catch (error) {
       throw Exception(error.response?.data ?? 'Unknown error');
