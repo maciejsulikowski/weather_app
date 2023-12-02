@@ -124,7 +124,6 @@ class _SearchCityState extends State<SearchCity> {
                               context
                                   .read<SearchPageCubit>()
                                   .searchCity(controller.text);
-                              // toogleButton();
                               controller.clear();
                             },
                             style: ElevatedButton.styleFrom(

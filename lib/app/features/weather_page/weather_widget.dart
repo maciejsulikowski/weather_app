@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/core/enums.dart';
 import 'package:weather_app/app/data/remote_data_sources/search_data_source.dart';
 import 'package:weather_app/app/domain/models/search_model.dart';
 import 'package:weather_app/app/domain/models/weather_model.dart';
@@ -29,110 +30,118 @@ class WeatherWidget extends StatelessWidget {
         ..getForecast(cityKey),
       child: BlocBuilder<WeatherCubit, WeatherState>(
         builder: (context, state) {
-          return MaterialApp(
-            home: Scaffold(
-                body: SafeArea(
-              child: ListView(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color.fromARGB(255, 5, 36, 136),
-                        Color.fromARGB(255, 42, 39, 233),
-                      ],
-                    )),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
+          if (state.status == Status.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state.status == Status.error) {
+            return Center(child: Text(state.errorMessage.toString()));
+          } else {
+            return MaterialApp(
+              home: Scaffold(
+                  body: SafeArea(
+                child: ListView(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromARGB(255, 5, 36, 136),
+                          Color.fromARGB(255, 42, 39, 233),
+                        ],
+                      )),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,
+                                    ),
+                                    child: IconButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        icon: const Icon(Icons.arrow_back)),
                                   ),
-                                  child: IconButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      icon: const Icon(Icons.arrow_back)),
-                                ),
-                                Text(searchModel.localizedName,
+                                  Text(searchModel.localizedName,
+                                      style: GoogleFonts.aBeeZee(
+                                        fontSize: 40,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,
+                                    ),
+                                    child: IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(Icons.refresh)),
+                                  )
+                                ]),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            state.weatherModel == null
+                                ? const Text('?')
+                                : Text(state.weatherModel!.headline.category,
                                     style: GoogleFonts.aBeeZee(
-                                      fontSize: 40,
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    )),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            state.weatherModel == null
+                                ? const Text('?')
+                                : AnimationWeatherWidget(
+                                    state.weatherModel!.dailyForecasts[0]
+                                        .temperature.minimum.value
+                                        .toString(),
+                                  ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            state.weatherModel == null
+                                ? const Text('?')
+                                : Text(
+                                    state.weatherModel!.dailyForecasts[0].date
+                                        .toString(),
+                                    style: GoogleFonts.aBeeZee(
+                                      fontSize: 16,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     )),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
-                                  ),
-                                  child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.refresh)),
-                                )
-                              ]),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          state.weatherModel == null
-                              ? const Text('?')
-                              : Text(state.weatherModel!.headline.category,
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                  )),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          state.weatherModel == null
-                              ? const Text('?')
-                              : AnimationWeatherWidget(
-                                  state.weatherModel!.dailyForecasts[0]
-                                      .temperature.minimum.value
-                                      .toString(),
-                                ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          state.weatherModel == null
-                              ? const Text('?')
-                              : Text(
-                                  state.weatherModel!.dailyForecasts[0].date
-                                      .toString(),
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const BasicInformationWeatherWidget(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const TextAroundDetailsWidget(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const DaysWidget()
-                        ],
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const BasicInformationWeatherWidget(),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const TextAroundDetailsWidget(),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const DaysWidget()
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )),
-          );
+                  ],
+                ),
+              )),
+            );
+          }
         },
       ),
     );
