@@ -228,11 +228,23 @@ class WeatherDataSource {
       if (listDynamic == null) {
         return null;
       }
-      
+
       return listDynamic.map((list) => list as Map<String, dynamic>).toList();
     } on DioException catch (error) {
       throw Exception(error.response?.data ?? 'Unknown error');
     }
+  }
+
+  Future<List<Map<String, dynamic>>?> conditionsData(String key) async {
+    final response = await Dio().get<List<dynamic>>(
+        'http://dataservice.accuweather.com/currentconditions/v1/$key?apikey=GNwD44aICxg0RdzaF8xOnGImqFaitLVY&details=true');
+
+    final listOfResponse = response.data;
+    if (listOfResponse == null) {
+      return null;
+    }
+
+    return listOfResponse.map((list) => list as Map<String, dynamic>).toList();
   }
 
   Future<Map<String, dynamic>?> forecastData(String key) async {
