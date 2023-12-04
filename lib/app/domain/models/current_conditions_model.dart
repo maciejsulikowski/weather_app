@@ -8,7 +8,7 @@ part 'current_conditions_model.freezed.dart';
 class CurrentConditionsModel with _$CurrentConditionsModel {
   factory CurrentConditionsModel(
     @JsonKey(name: 'WeatherText') String weatherText,
-    // @JsonKey(name: 'Temperature') Temperature temperature,
+    @JsonKey(name: 'Temperature') Temperature temperature,
     
   ) = _CurrentConditionsModel;
 
@@ -16,26 +16,26 @@ class CurrentConditionsModel with _$CurrentConditionsModel {
       _$CurrentConditionsModelFromJson(json);
 }
 
-// @freezed
-// class Temperature with _$Temperature {
-//   factory Temperature(
-//     @JsonKey(name: 'Metric') Metric metric,
+@freezed
+class Temperature with _$Temperature {
+  factory Temperature(
+    @JsonKey(name: 'Metric') Metric metric,
    
-//   ) = _Temperature;
+  ) = _Temperature;
 
-//   factory Temperature.fromJson(Map<String, dynamic> json) =>
-//       _$TemperatureFromJson(json);
-// }
+  factory Temperature.fromJson(Map<String, dynamic> json) =>
+      _$TemperatureFromJson(json);
+}
 
 
-// @freezed
-// class Metric with _$Metric {
-//   factory Metric(
-//     @JsonKey(name: 'Value') double value,
-//   ) = _Metric;
+@freezed
+class Metric with _$Metric {
+  factory Metric(
+    @JsonKey(name: 'Value') double value,
+  ) = _Metric;
 
-//   factory Metric.fromJson(Map<String, dynamic> json) =>
-//       _$MetricFromJson(json);
-// }
+  factory Metric.fromJson(Map<String, dynamic> json) =>
+      _$MetricFromJson(json);
+}
 
 

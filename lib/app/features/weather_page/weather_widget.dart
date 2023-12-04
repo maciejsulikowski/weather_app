@@ -28,8 +28,7 @@ class WeatherWidget extends StatelessWidget {
     return BlocProvider(
       create: (context) => WeatherCubit(
           SearchRepository(dataSource: SearchDataSource(), WeatherDataSource()))
-        ..getForecast(cityKey)
-        ..getCurrentConditions(cityKey),
+        ..getWeatherData(cityKey),
       child: BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
         if (state.status == Status.loading) {
           return const Center(child: CircularProgressIndicator());
@@ -101,13 +100,13 @@ class WeatherWidget extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        state.weatherModel == null
-                            ? const Text('?')
-                            : AnimationWeatherWidget(
-                                state.weatherModel!.dailyForecasts[0]
-                                    .temperature.minimum.value
-                                    .toString(),
-                              ),
+                        for (final data in state.conditionsModel!) ...[
+                          state.conditionsModel == null
+                              ? const Text('?')
+                              : AnimationWeatherWidget(
+                                  data.temperature.metric.value.toString(),
+                                ),
+                        ],
                         const SizedBox(
                           height: 10,
                         ),

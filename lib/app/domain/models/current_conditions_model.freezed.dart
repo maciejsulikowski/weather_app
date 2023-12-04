@@ -23,6 +23,8 @@ CurrentConditionsModel _$CurrentConditionsModelFromJson(
 mixin _$CurrentConditionsModel {
   @JsonKey(name: 'WeatherText')
   String get weatherText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Temperature')
+  Temperature get temperature => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,11 @@ abstract class $CurrentConditionsModelCopyWith<$Res> {
           $Res Function(CurrentConditionsModel) then) =
       _$CurrentConditionsModelCopyWithImpl<$Res, CurrentConditionsModel>;
   @useResult
-  $Res call({@JsonKey(name: 'WeatherText') String weatherText});
+  $Res call(
+      {@JsonKey(name: 'WeatherText') String weatherText,
+      @JsonKey(name: 'Temperature') Temperature temperature});
+
+  $TemperatureCopyWith<$Res> get temperature;
 }
 
 /// @nodoc
@@ -54,13 +60,26 @@ class _$CurrentConditionsModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? weatherText = null,
+    Object? temperature = null,
   }) {
     return _then(_value.copyWith(
       weatherText: null == weatherText
           ? _value.weatherText
           : weatherText // ignore: cast_nullable_to_non_nullable
               as String,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as Temperature,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TemperatureCopyWith<$Res> get temperature {
+    return $TemperatureCopyWith<$Res>(_value.temperature, (value) {
+      return _then(_value.copyWith(temperature: value) as $Val);
+    });
   }
 }
 
@@ -73,7 +92,12 @@ abstract class _$$CurrentConditionsModelImplCopyWith<$Res>
       __$$CurrentConditionsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'WeatherText') String weatherText});
+  $Res call(
+      {@JsonKey(name: 'WeatherText') String weatherText,
+      @JsonKey(name: 'Temperature') Temperature temperature});
+
+  @override
+  $TemperatureCopyWith<$Res> get temperature;
 }
 
 /// @nodoc
@@ -90,12 +114,17 @@ class __$$CurrentConditionsModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? weatherText = null,
+    Object? temperature = null,
   }) {
     return _then(_$CurrentConditionsModelImpl(
       null == weatherText
           ? _value.weatherText
           : weatherText // ignore: cast_nullable_to_non_nullable
               as String,
+      null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as Temperature,
     ));
   }
 }
@@ -103,7 +132,8 @@ class __$$CurrentConditionsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
-  _$CurrentConditionsModelImpl(@JsonKey(name: 'WeatherText') this.weatherText);
+  _$CurrentConditionsModelImpl(@JsonKey(name: 'WeatherText') this.weatherText,
+      @JsonKey(name: 'Temperature') this.temperature);
 
   factory _$CurrentConditionsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrentConditionsModelImplFromJson(json);
@@ -111,10 +141,13 @@ class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
   @override
   @JsonKey(name: 'WeatherText')
   final String weatherText;
+  @override
+  @JsonKey(name: 'Temperature')
+  final Temperature temperature;
 
   @override
   String toString() {
-    return 'CurrentConditionsModel(weatherText: $weatherText)';
+    return 'CurrentConditionsModel(weatherText: $weatherText, temperature: $temperature)';
   }
 
   @override
@@ -123,12 +156,14 @@ class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
         (other.runtimeType == runtimeType &&
             other is _$CurrentConditionsModelImpl &&
             (identical(other.weatherText, weatherText) ||
-                other.weatherText == weatherText));
+                other.weatherText == weatherText) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, weatherText);
+  int get hashCode => Object.hash(runtimeType, weatherText, temperature);
 
   @JsonKey(ignore: true)
   @override
@@ -147,7 +182,8 @@ class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
 
 abstract class _CurrentConditionsModel implements CurrentConditionsModel {
   factory _CurrentConditionsModel(
-          @JsonKey(name: 'WeatherText') final String weatherText) =
+          @JsonKey(name: 'WeatherText') final String weatherText,
+          @JsonKey(name: 'Temperature') final Temperature temperature) =
       _$CurrentConditionsModelImpl;
 
   factory _CurrentConditionsModel.fromJson(Map<String, dynamic> json) =
@@ -157,7 +193,298 @@ abstract class _CurrentConditionsModel implements CurrentConditionsModel {
   @JsonKey(name: 'WeatherText')
   String get weatherText;
   @override
+  @JsonKey(name: 'Temperature')
+  Temperature get temperature;
+  @override
   @JsonKey(ignore: true)
   _$$CurrentConditionsModelImplCopyWith<_$CurrentConditionsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+Temperature _$TemperatureFromJson(Map<String, dynamic> json) {
+  return _Temperature.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Temperature {
+  @JsonKey(name: 'Metric')
+  Metric get metric => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TemperatureCopyWith<Temperature> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TemperatureCopyWith<$Res> {
+  factory $TemperatureCopyWith(
+          Temperature value, $Res Function(Temperature) then) =
+      _$TemperatureCopyWithImpl<$Res, Temperature>;
+  @useResult
+  $Res call({@JsonKey(name: 'Metric') Metric metric});
+
+  $MetricCopyWith<$Res> get metric;
+}
+
+/// @nodoc
+class _$TemperatureCopyWithImpl<$Res, $Val extends Temperature>
+    implements $TemperatureCopyWith<$Res> {
+  _$TemperatureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? metric = null,
+  }) {
+    return _then(_value.copyWith(
+      metric: null == metric
+          ? _value.metric
+          : metric // ignore: cast_nullable_to_non_nullable
+              as Metric,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MetricCopyWith<$Res> get metric {
+    return $MetricCopyWith<$Res>(_value.metric, (value) {
+      return _then(_value.copyWith(metric: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$TemperatureImplCopyWith<$Res>
+    implements $TemperatureCopyWith<$Res> {
+  factory _$$TemperatureImplCopyWith(
+          _$TemperatureImpl value, $Res Function(_$TemperatureImpl) then) =
+      __$$TemperatureImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'Metric') Metric metric});
+
+  @override
+  $MetricCopyWith<$Res> get metric;
+}
+
+/// @nodoc
+class __$$TemperatureImplCopyWithImpl<$Res>
+    extends _$TemperatureCopyWithImpl<$Res, _$TemperatureImpl>
+    implements _$$TemperatureImplCopyWith<$Res> {
+  __$$TemperatureImplCopyWithImpl(
+      _$TemperatureImpl _value, $Res Function(_$TemperatureImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? metric = null,
+  }) {
+    return _then(_$TemperatureImpl(
+      null == metric
+          ? _value.metric
+          : metric // ignore: cast_nullable_to_non_nullable
+              as Metric,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TemperatureImpl implements _Temperature {
+  _$TemperatureImpl(@JsonKey(name: 'Metric') this.metric);
+
+  factory _$TemperatureImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TemperatureImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'Metric')
+  final Metric metric;
+
+  @override
+  String toString() {
+    return 'Temperature(metric: $metric)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemperatureImpl &&
+            (identical(other.metric, metric) || other.metric == metric));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, metric);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemperatureImplCopyWith<_$TemperatureImpl> get copyWith =>
+      __$$TemperatureImplCopyWithImpl<_$TemperatureImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TemperatureImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Temperature implements Temperature {
+  factory _Temperature(@JsonKey(name: 'Metric') final Metric metric) =
+      _$TemperatureImpl;
+
+  factory _Temperature.fromJson(Map<String, dynamic> json) =
+      _$TemperatureImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'Metric')
+  Metric get metric;
+  @override
+  @JsonKey(ignore: true)
+  _$$TemperatureImplCopyWith<_$TemperatureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Metric _$MetricFromJson(Map<String, dynamic> json) {
+  return _Metric.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Metric {
+  @JsonKey(name: 'Value')
+  double get value => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MetricCopyWith<Metric> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MetricCopyWith<$Res> {
+  factory $MetricCopyWith(Metric value, $Res Function(Metric) then) =
+      _$MetricCopyWithImpl<$Res, Metric>;
+  @useResult
+  $Res call({@JsonKey(name: 'Value') double value});
+}
+
+/// @nodoc
+class _$MetricCopyWithImpl<$Res, $Val extends Metric>
+    implements $MetricCopyWith<$Res> {
+  _$MetricCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MetricImplCopyWith<$Res> implements $MetricCopyWith<$Res> {
+  factory _$$MetricImplCopyWith(
+          _$MetricImpl value, $Res Function(_$MetricImpl) then) =
+      __$$MetricImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'Value') double value});
+}
+
+/// @nodoc
+class __$$MetricImplCopyWithImpl<$Res>
+    extends _$MetricCopyWithImpl<$Res, _$MetricImpl>
+    implements _$$MetricImplCopyWith<$Res> {
+  __$$MetricImplCopyWithImpl(
+      _$MetricImpl _value, $Res Function(_$MetricImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$MetricImpl(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$MetricImpl implements _Metric {
+  _$MetricImpl(@JsonKey(name: 'Value') this.value);
+
+  factory _$MetricImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MetricImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'Value')
+  final double value;
+
+  @override
+  String toString() {
+    return 'Metric(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MetricImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MetricImplCopyWith<_$MetricImpl> get copyWith =>
+      __$$MetricImplCopyWithImpl<_$MetricImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MetricImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Metric implements Metric {
+  factory _Metric(@JsonKey(name: 'Value') final double value) = _$MetricImpl;
+
+  factory _Metric.fromJson(Map<String, dynamic> json) = _$MetricImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'Value')
+  double get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$MetricImplCopyWith<_$MetricImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -12,13 +12,15 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   final SearchRepository searchRepository;
 
-  Future<void> getForecast(String key) async {
+  Future<void> getWeatherData(String key) async {
     emit(const WeatherState(status: Status.loading));
 
     final weather = await searchRepository.getForecastModel(key);
-
+    final currentConditions =
+        await searchRepository.getCurrentConditionsModel(key);
     try {
       emit(WeatherState(
+        conditionsModel: currentConditions,
         weatherModel: weather,
         status: Status.success,
       ));
@@ -27,21 +29,21 @@ class WeatherCubit extends Cubit<WeatherState> {
     }
   }
 
-  Future<void> getCurrentConditions(String key) async {
-    emit(const WeatherState(status: Status.loading));
+  // Future<void> getCurrentConditions(String key) async {
+  //   emit(const WeatherState(status: Status.loading));
 
-    final currentConditions =
-        await searchRepository.getCurrentConditionsModel(key);
-    print(currentConditions);
-    try {
-      emit(WeatherState(
-        conditionsModel: currentConditions,
-        status: Status.success,
-      ));
-    } catch (error) {
-      emit(const WeatherState(
-        status: Status.error,
-      ));
-    }
-  }
+  //   final currentConditions =
+  //       await searchRepository.getCurrentConditionsModel(key);
+  //   print(currentConditions);
+  //   try {
+  //     emit(WeatherState(
+  //       conditionsModel: currentConditions,
+  //       status: Status.success,
+  //     ));
+  //   } catch (error) {
+  //     emit(const WeatherState(
+  //       status: Status.error,
+  //     ));
+  //   }
+  // }
 }
