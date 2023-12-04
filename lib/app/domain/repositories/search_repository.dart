@@ -1,4 +1,5 @@
 import 'package:weather_app/app/data/remote_data_sources/search_data_source.dart';
+import 'package:weather_app/app/domain/models/current_conditions_model.dart';
 import 'package:weather_app/app/domain/models/search_model.dart';
 import 'package:weather_app/app/domain/models/weather_model.dart';
 
@@ -28,5 +29,16 @@ class SearchRepository {
 
     return WeatherModel.fromJson(json);
     // return json.map((item) => WeatherModel.fromJson(item)).toList();
+  }
+
+  Future<List<CurrentConditionsModel>> getCurrentConditionsModel(
+      String key) async {
+    final json = await remoteDataSource.conditionsData(key);
+
+    if (json == null) {
+      return [];
+    }
+
+    return json.map((list) => CurrentConditionsModel.fromJson(list)).toList();
   }
 }
