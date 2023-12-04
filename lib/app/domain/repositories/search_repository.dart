@@ -34,7 +34,7 @@ class SearchRepository {
   Future<List<CurrentConditionsModel>> getCurrentConditionsModel(
       String key) async {
     final json = await remoteDataSource.conditionsData(key);
-
+  
     if (json == null) {
       return [];
     }

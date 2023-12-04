@@ -16,7 +16,7 @@ class ColumnWeatherWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: ((context) => DetailsWidget())));
+            MaterialPageRoute(builder: ((context) => const DetailsWidget())));
       },
       child: Container(
         decoration: BoxDecoration(
