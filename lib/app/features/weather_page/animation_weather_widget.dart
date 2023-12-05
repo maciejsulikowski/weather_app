@@ -9,12 +9,12 @@ class AnimationWeatherWidget extends StatelessWidget {
     super.key,
   });
 
-  final String temp;
+  final double temp;
 
   @override
   Widget build(BuildContext context) {
-    double fahrenHeit = double.parse(temp);
-    double celsius = (fahrenHeit - 32) * 5 / 9;
+    // double fahrenHeit = double.parse(temp);
+    // double celsius = (fahrenHeit - 32) * 5 / 9;
 
     return SizedBox(
       height: 350,
@@ -24,7 +24,7 @@ class AnimationWeatherWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(celsius.toStringAsPrecision(2),
+              Text(temp.toString(),
                   style: GoogleFonts.aBeeZee(
                     fontSize: 96,
                     color: Colors.white,
@@ -37,18 +37,29 @@ class AnimationWeatherWidget extends StatelessWidget {
                   )),
             ],
           ),
-          if (celsius < 25 && celsius > 15)
+          if (temp > 25)
             Positioned(
               top: 70,
               left: 60,
               right: 60,
               child: Container(
                 child: Lottie.asset(
-                  'images/animation_5.json',
+                  'images/animation_6.json',
                 ),
               ),
             ),
-          if (celsius < 15 && celsius > 10)
+          if (temp <= 25 && temp >= 15)
+            Positioned(
+              top: 70,
+              left: 60,
+              right: 60,
+              child: Container(
+                child: Lottie.asset(
+                  'images/animattion_5.json',
+                ),
+              ),
+            ),
+          if (temp < 15 && temp > 10)
             Positioned(
               top: 70,
               left: 60,
@@ -59,7 +70,7 @@ class AnimationWeatherWidget extends StatelessWidget {
                 ),
               ),
             ),
-          if (celsius < 10 && celsius > 5)
+          if (temp < 10 && temp > 5)
             Positioned(
               top: 70,
               left: 60,
@@ -70,7 +81,7 @@ class AnimationWeatherWidget extends StatelessWidget {
                 ),
               ),
             ),
-          if (celsius < 5 && celsius > 0)
+          if (temp < 5 && temp > 0)
             Positioned(
               top: 70,
               left: 60,
@@ -81,7 +92,7 @@ class AnimationWeatherWidget extends StatelessWidget {
                 ),
               ),
             ),
-          if (celsius < 0)
+          if (temp < 0)
             Positioned(
               top: 70,
               left: 60,

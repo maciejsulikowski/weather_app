@@ -11,6 +11,7 @@ _$CurrentConditionsModelImpl _$$CurrentConditionsModelImplFromJson(
     _$CurrentConditionsModelImpl(
       json['WeatherText'] as String,
       Temperature.fromJson(json['Temperature'] as Map<String, dynamic>),
+      Wind.fromJson(json['Wind'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CurrentConditionsModelImplToJson(
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$CurrentConditionsModelImplToJson(
     <String, dynamic>{
       'WeatherText': instance.weatherText,
       'Temperature': instance.temperature,
+      'Wind': instance.wind,
     };
 
 _$TemperatureImpl _$$TemperatureImplFromJson(Map<String, dynamic> json) =>
@@ -37,4 +39,34 @@ _$MetricImpl _$$MetricImplFromJson(Map<String, dynamic> json) => _$MetricImpl(
 Map<String, dynamic> _$$MetricImplToJson(_$MetricImpl instance) =>
     <String, dynamic>{
       'Value': instance.value,
+    };
+
+_$WindImpl _$$WindImplFromJson(Map<String, dynamic> json) => _$WindImpl(
+      Speed.fromJson(json['Speed'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$WindImplToJson(_$WindImpl instance) =>
+    <String, dynamic>{
+      'Speed': instance.speed,
+    };
+
+_$SpeedImpl _$$SpeedImplFromJson(Map<String, dynamic> json) => _$SpeedImpl(
+      MetricTwo.fromJson(json['Metric'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$SpeedImplToJson(_$SpeedImpl instance) =>
+    <String, dynamic>{
+      'Metric': instance.metric,
+    };
+
+_$MetricTwoImpl _$$MetricTwoImplFromJson(Map<String, dynamic> json) =>
+    _$MetricTwoImpl(
+      (json['Value'] as num).toDouble(),
+      json['Unit'] as String,
+    );
+
+Map<String, dynamic> _$$MetricTwoImplToJson(_$MetricTwoImpl instance) =>
+    <String, dynamic>{
+      'Value': instance.value,
+      'Unit': instance.unit,
     };

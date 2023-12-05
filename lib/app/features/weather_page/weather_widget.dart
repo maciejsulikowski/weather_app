@@ -104,7 +104,7 @@ class WeatherWidget extends StatelessWidget {
                           state.conditionsModel == null
                               ? const Text('?')
                               : AnimationWeatherWidget(
-                                  data.temperature.metric.value.toString(),
+                                  data.temperature.metric.value,
                                 ),
                         ],
                         const SizedBox(

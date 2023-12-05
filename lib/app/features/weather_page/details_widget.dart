@@ -72,7 +72,7 @@ class DetailsWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  AnimationWeatherWidget(''),
+                  AnimationWeatherWidget(1),
                   const SizedBox(
                     height: 10,
                   ),
