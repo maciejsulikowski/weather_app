@@ -85,7 +85,9 @@ class DetailsWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const BasicInformationWeatherWidget(),
+                  const BasicInformationWeatherWidget(
+                    model: [],
+                  ),
                 ],
               ),
             ),

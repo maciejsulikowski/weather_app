@@ -12,6 +12,8 @@ _$CurrentConditionsModelImpl _$$CurrentConditionsModelImplFromJson(
       json['WeatherText'] as String,
       Temperature.fromJson(json['Temperature'] as Map<String, dynamic>),
       Wind.fromJson(json['Wind'] as Map<String, dynamic>),
+      json['RelativeHumidity'] as int,
+      json['CloudCover'] as int,
     );
 
 Map<String, dynamic> _$$CurrentConditionsModelImplToJson(
@@ -20,6 +22,8 @@ Map<String, dynamic> _$$CurrentConditionsModelImplToJson(
       'WeatherText': instance.weatherText,
       'Temperature': instance.temperature,
       'Wind': instance.wind,
+      'RelativeHumidity': instance.relativeHumidity,
+      'CloudCover': instance.cloudCover,
     };
 
 _$TemperatureImpl _$$TemperatureImplFromJson(Map<String, dynamic> json) =>

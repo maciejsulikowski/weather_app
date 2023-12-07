@@ -10,6 +10,8 @@ class CurrentConditionsModel with _$CurrentConditionsModel {
     @JsonKey(name: 'WeatherText') String weatherText,
     @JsonKey(name: 'Temperature') Temperature temperature,
     @JsonKey(name: 'Wind') Wind wind,
+    @JsonKey(name: 'RelativeHumidity') int relativeHumidity,
+    @JsonKey(name: 'CloudCover') int cloudCover,
   ) = _CurrentConditionsModel;
 
   factory CurrentConditionsModel.fromJson(Map<String, dynamic> json) =>

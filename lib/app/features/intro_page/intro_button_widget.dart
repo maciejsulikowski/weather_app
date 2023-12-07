@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/app/features/search_page/search_page_widget.dart';
 
-
 class IntroButton extends StatelessWidget {
   const IntroButton({
     super.key,
@@ -50,13 +49,13 @@ class IntroButton extends StatelessWidget {
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
+            size: 20,
           ),
         ),
       ),
     );
   }
 }
-
 
 Route createRoute() {
   return PageRouteBuilder(
@@ -77,5 +76,3 @@ Route createRoute() {
         );
       });
 }
-
-

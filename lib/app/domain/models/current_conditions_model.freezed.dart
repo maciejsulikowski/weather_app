@@ -27,6 +27,10 @@ mixin _$CurrentConditionsModel {
   Temperature get temperature => throw _privateConstructorUsedError;
   @JsonKey(name: 'Wind')
   Wind get wind => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RelativeHumidity')
+  int get relativeHumidity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CloudCover')
+  int get cloudCover => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +47,9 @@ abstract class $CurrentConditionsModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'WeatherText') String weatherText,
       @JsonKey(name: 'Temperature') Temperature temperature,
-      @JsonKey(name: 'Wind') Wind wind});
+      @JsonKey(name: 'Wind') Wind wind,
+      @JsonKey(name: 'RelativeHumidity') int relativeHumidity,
+      @JsonKey(name: 'CloudCover') int cloudCover});
 
   $TemperatureCopyWith<$Res> get temperature;
   $WindCopyWith<$Res> get wind;
@@ -66,6 +72,8 @@ class _$CurrentConditionsModelCopyWithImpl<$Res,
     Object? weatherText = null,
     Object? temperature = null,
     Object? wind = null,
+    Object? relativeHumidity = null,
+    Object? cloudCover = null,
   }) {
     return _then(_value.copyWith(
       weatherText: null == weatherText
@@ -80,6 +88,14 @@ class _$CurrentConditionsModelCopyWithImpl<$Res,
           ? _value.wind
           : wind // ignore: cast_nullable_to_non_nullable
               as Wind,
+      relativeHumidity: null == relativeHumidity
+          ? _value.relativeHumidity
+          : relativeHumidity // ignore: cast_nullable_to_non_nullable
+              as int,
+      cloudCover: null == cloudCover
+          ? _value.cloudCover
+          : cloudCover // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -112,7 +128,9 @@ abstract class _$$CurrentConditionsModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'WeatherText') String weatherText,
       @JsonKey(name: 'Temperature') Temperature temperature,
-      @JsonKey(name: 'Wind') Wind wind});
+      @JsonKey(name: 'Wind') Wind wind,
+      @JsonKey(name: 'RelativeHumidity') int relativeHumidity,
+      @JsonKey(name: 'CloudCover') int cloudCover});
 
   @override
   $TemperatureCopyWith<$Res> get temperature;
@@ -136,6 +154,8 @@ class __$$CurrentConditionsModelImplCopyWithImpl<$Res>
     Object? weatherText = null,
     Object? temperature = null,
     Object? wind = null,
+    Object? relativeHumidity = null,
+    Object? cloudCover = null,
   }) {
     return _then(_$CurrentConditionsModelImpl(
       null == weatherText
@@ -150,6 +170,14 @@ class __$$CurrentConditionsModelImplCopyWithImpl<$Res>
           ? _value.wind
           : wind // ignore: cast_nullable_to_non_nullable
               as Wind,
+      null == relativeHumidity
+          ? _value.relativeHumidity
+          : relativeHumidity // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == cloudCover
+          ? _value.cloudCover
+          : cloudCover // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -160,7 +188,9 @@ class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
   _$CurrentConditionsModelImpl(
       @JsonKey(name: 'WeatherText') this.weatherText,
       @JsonKey(name: 'Temperature') this.temperature,
-      @JsonKey(name: 'Wind') this.wind);
+      @JsonKey(name: 'Wind') this.wind,
+      @JsonKey(name: 'RelativeHumidity') this.relativeHumidity,
+      @JsonKey(name: 'CloudCover') this.cloudCover);
 
   factory _$CurrentConditionsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrentConditionsModelImplFromJson(json);
@@ -174,10 +204,16 @@ class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
   @override
   @JsonKey(name: 'Wind')
   final Wind wind;
+  @override
+  @JsonKey(name: 'RelativeHumidity')
+  final int relativeHumidity;
+  @override
+  @JsonKey(name: 'CloudCover')
+  final int cloudCover;
 
   @override
   String toString() {
-    return 'CurrentConditionsModel(weatherText: $weatherText, temperature: $temperature, wind: $wind)';
+    return 'CurrentConditionsModel(weatherText: $weatherText, temperature: $temperature, wind: $wind, relativeHumidity: $relativeHumidity, cloudCover: $cloudCover)';
   }
 
   @override
@@ -189,12 +225,17 @@ class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
                 other.weatherText == weatherText) &&
             (identical(other.temperature, temperature) ||
                 other.temperature == temperature) &&
-            (identical(other.wind, wind) || other.wind == wind));
+            (identical(other.wind, wind) || other.wind == wind) &&
+            (identical(other.relativeHumidity, relativeHumidity) ||
+                other.relativeHumidity == relativeHumidity) &&
+            (identical(other.cloudCover, cloudCover) ||
+                other.cloudCover == cloudCover));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, weatherText, temperature, wind);
+  int get hashCode => Object.hash(runtimeType, weatherText, temperature, wind,
+      relativeHumidity, cloudCover);
 
   @JsonKey(ignore: true)
   @override
@@ -213,9 +254,12 @@ class _$CurrentConditionsModelImpl implements _CurrentConditionsModel {
 
 abstract class _CurrentConditionsModel implements CurrentConditionsModel {
   factory _CurrentConditionsModel(
-      @JsonKey(name: 'WeatherText') final String weatherText,
-      @JsonKey(name: 'Temperature') final Temperature temperature,
-      @JsonKey(name: 'Wind') final Wind wind) = _$CurrentConditionsModelImpl;
+          @JsonKey(name: 'WeatherText') final String weatherText,
+          @JsonKey(name: 'Temperature') final Temperature temperature,
+          @JsonKey(name: 'Wind') final Wind wind,
+          @JsonKey(name: 'RelativeHumidity') final int relativeHumidity,
+          @JsonKey(name: 'CloudCover') final int cloudCover) =
+      _$CurrentConditionsModelImpl;
 
   factory _CurrentConditionsModel.fromJson(Map<String, dynamic> json) =
       _$CurrentConditionsModelImpl.fromJson;
@@ -229,6 +273,12 @@ abstract class _CurrentConditionsModel implements CurrentConditionsModel {
   @override
   @JsonKey(name: 'Wind')
   Wind get wind;
+  @override
+  @JsonKey(name: 'RelativeHumidity')
+  int get relativeHumidity;
+  @override
+  @JsonKey(name: 'CloudCover')
+  int get cloudCover;
   @override
   @JsonKey(ignore: true)
   _$$CurrentConditionsModelImplCopyWith<_$CurrentConditionsModelImpl>
