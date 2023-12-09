@@ -29,6 +29,9 @@ class WeatherCubit extends Cubit<WeatherState> {
     }
   }
 
+  
+}
+
   // Future<void> getCurrentConditions(String key) async {
   //   emit(const WeatherState(status: Status.loading));
 
@@ -46,4 +49,4 @@ class WeatherCubit extends Cubit<WeatherState> {
   //     ));
   //   }
   // }
-}
+

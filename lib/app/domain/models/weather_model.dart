@@ -39,7 +39,7 @@ class DailyForecasts with _$DailyForecasts {
   const DailyForecasts._();
   factory DailyForecasts(
     @JsonKey(name: "Date") DateTime date,
-    // @JsonKey(name: "EpochDate") int epochDate,
+    @JsonKey(name: "EpochDate") int epochDate,
     @JsonKey(name: "Temperature") Temperature temperature,
     // @JsonKey(name: "Day") Day day,
     // @JsonKey(name: "Night") Day night,

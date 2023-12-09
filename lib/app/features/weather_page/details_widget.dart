@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/domain/models/current_conditions_model.dart';
+import 'package:weather_app/app/domain/models/search_model.dart';
 import 'package:weather_app/app/domain/models/weather_model.dart';
 import 'package:weather_app/app/features/weather_page/animation_weather_widget.dart';
 import 'package:weather_app/app/features/weather_page/basic_information_weather_widget.dart';
 
 class DetailsWidget extends StatelessWidget {
   const DetailsWidget({
+    required this.conditionsModel,
+    required this.weatherModel,
+    required this.elementData,
+    required this.searchModel,
     super.key,
   });
+
+  final WeatherModel weatherModel;
+  final DailyForecasts elementData;
+  final SearchModel searchModel;
+  final List<CurrentConditionsModel>? conditionsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +56,7 @@ class DetailsWidget extends StatelessWidget {
                               },
                               icon: const Icon(Icons.arrow_back)),
                         ),
-                        Text('City',
+                        Text(searchModel.localizedName,
                             style: GoogleFonts.aBeeZee(
                               fontSize: 40,
                               color: Colors.white,
@@ -64,19 +75,21 @@ class DetailsWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text('Sunny-raining',
-                      style: GoogleFonts.aBeeZee(
-                        fontSize: 18,
-                        color: Colors.white,
-                      )),
+                  for (final current in conditionsModel!)
+                    Text(current.weatherText,
+                        style: GoogleFonts.aBeeZee(
+                          fontSize: 18,
+                          color: Colors.white,
+                        )),
                   const SizedBox(
                     height: 10,
                   ),
-                  AnimationWeatherWidget(1),
+                  for (final current in conditionsModel!)
+                    AnimationWeatherWidget(current.temperature.metric.value),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text('Monday, 10 October | 10:00',
+                  Text(elementData.dateFormatted,
                       style: GoogleFonts.aBeeZee(
                         fontSize: 16,
                         color: Colors.white,
@@ -85,8 +98,8 @@ class DetailsWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const BasicInformationWeatherWidget(
-                    model: [],
+                  BasicInformationWeatherWidget(
+                    model: conditionsModel!,
                   ),
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/app/domain/models/current_conditions_model.dart';
 import 'package:weather_app/app/domain/models/search_model.dart';
 import 'package:weather_app/app/domain/models/weather_model.dart';
 import 'package:weather_app/app/features/weather_page/column_weather_widget.dart';
@@ -6,10 +7,14 @@ import 'package:weather_app/app/features/weather_page/column_weather_widget.dart
 class DaysWidget extends StatelessWidget {
   const DaysWidget({
     required this.weatherModel,
+    required this.searchModel,
+    required this.conditionsModel,
     super.key,
   });
 
   final WeatherModel weatherModel;
+  final SearchModel searchModel;
+  final List<CurrentConditionsModel>? conditionsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +30,8 @@ class DaysWidget extends StatelessWidget {
               child: Row(
                 children: [
                   ColumnWeatherWidget(
+                    currentModel: conditionsModel,
+                    searchModel: searchModel,
                     weatherModel: weatherModel,
                     elementData: forecastData[0],
                   ),
@@ -32,6 +39,8 @@ class DaysWidget extends StatelessWidget {
                     width: 10,
                   ),
                   ColumnWeatherWidget(
+                    currentModel: conditionsModel,
+                    searchModel: searchModel,
                     weatherModel: weatherModel,
                     elementData: forecastData[1],
                   ),
@@ -39,6 +48,8 @@ class DaysWidget extends StatelessWidget {
                     width: 10,
                   ),
                   ColumnWeatherWidget(
+                    currentModel: conditionsModel,
+                    searchModel: searchModel,
                     weatherModel: weatherModel,
                     elementData: forecastData[2],
                   ),
@@ -46,6 +57,8 @@ class DaysWidget extends StatelessWidget {
                     width: 10,
                   ),
                   ColumnWeatherWidget(
+                    currentModel: conditionsModel,
+                    searchModel: searchModel,
                     weatherModel: weatherModel,
                     elementData: forecastData[3],
                   ),
@@ -53,6 +66,8 @@ class DaysWidget extends StatelessWidget {
                     width: 10,
                   ),
                   ColumnWeatherWidget(
+                    currentModel: conditionsModel,
+                    searchModel: searchModel,
                     weatherModel: weatherModel,
                     elementData: forecastData[4],
                   ),

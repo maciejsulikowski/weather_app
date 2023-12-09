@@ -49,6 +49,7 @@ Map<String, dynamic> _$$HeadlineImplToJson(_$HeadlineImpl instance) =>
 _$DailyForecastsImpl _$$DailyForecastsImplFromJson(Map<String, dynamic> json) =>
     _$DailyForecastsImpl(
       DateTime.parse(json['Date'] as String),
+      json['EpochDate'] as int,
       Temperature.fromJson(json['Temperature'] as Map<String, dynamic>),
     );
 
@@ -56,6 +57,7 @@ Map<String, dynamic> _$$DailyForecastsImplToJson(
         _$DailyForecastsImpl instance) =>
     <String, dynamic>{
       'Date': instance.date.toIso8601String(),
+      'EpochDate': instance.epochDate,
       'Temperature': instance.temperature,
     };
 

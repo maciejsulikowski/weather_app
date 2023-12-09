@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/app/domain/models/current_conditions_model.dart';
+import 'package:weather_app/app/domain/models/search_model.dart';
 import 'package:weather_app/app/domain/models/weather_model.dart';
 import 'package:weather_app/app/features/weather_page/details_widget.dart';
 
@@ -7,11 +11,15 @@ class ColumnWeatherWidget extends StatelessWidget {
   const ColumnWeatherWidget({
     required this.weatherModel,
     required this.elementData,
+    required this.searchModel,
+    required this.currentModel,
     super.key,
   });
 
   final WeatherModel weatherModel;
   final DailyForecasts elementData;
+  final SearchModel searchModel;
+  final List<CurrentConditionsModel>? currentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,12 @@ class ColumnWeatherWidget extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DetailsWidget(),
+            builder: (context) => DetailsWidget(
+              conditionsModel: currentModel,
+              searchModel: searchModel,
+              weatherModel: weatherModel,
+              elementData: elementData,
+            ),
           ),
         );
       },

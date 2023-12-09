@@ -4,16 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/app/core/enums.dart';
 import 'package:weather_app/app/data/remote_data_sources/search_data_source.dart';
 import 'package:weather_app/app/domain/models/search_model.dart';
-import 'package:weather_app/app/domain/models/weather_model.dart';
 import 'package:weather_app/app/domain/repositories/search_repository.dart';
 import 'package:weather_app/app/features/weather_page/animation_weather_widget.dart';
 import 'package:weather_app/app/features/weather_page/basic_information_weather_widget.dart';
 import 'package:weather_app/app/features/weather_page/cubit/weather_cubit.dart';
 import 'package:weather_app/app/features/weather_page/days_widget.dart';
 import 'package:weather_app/app/features/weather_page/text_around_details_widget.dart';
-import 'package:intl/intl.dart';
 
-class WeatherWidget extends StatelessWidget {
+class WeatherWidget extends StatefulWidget {
   const WeatherWidget({
     required this.searchModel,
     super.key,
@@ -22,8 +20,19 @@ class WeatherWidget extends StatelessWidget {
   final SearchModel searchModel;
 
   @override
+  State<WeatherWidget> createState() => _WeatherWidgetState();
+}
+
+class _WeatherWidgetState extends State<WeatherWidget> {
+  @override
   Widget build(BuildContext context) {
-    final cityKey = searchModel.key;
+    void updateUI() {
+      setState(() {
+        //You can also make changes to your state here.
+      });
+    }
+
+    final cityKey = widget.searchModel.key;
 
     return BlocProvider(
       create: (context) => WeatherCubit(
@@ -69,7 +78,7 @@ class WeatherWidget extends StatelessWidget {
                                     },
                                     icon: const Icon(Icons.arrow_back)),
                               ),
-                              Text(searchModel.localizedName,
+                              Text(widget.searchModel.localizedName,
                                   style: GoogleFonts.aBeeZee(
                                     fontSize: 40,
                                     color: Colors.white,
@@ -81,7 +90,9 @@ class WeatherWidget extends StatelessWidget {
                                   color: Colors.white,
                                 ),
                                 child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      updateUI();
+                                    },
                                     icon: const Icon(Icons.refresh)),
                               )
                             ]),
@@ -134,6 +145,8 @@ class WeatherWidget extends StatelessWidget {
                           height: 10,
                         ),
                         DaysWidget(
+                          conditionsModel: state.conditionsModel,
+                          searchModel: widget.searchModel,
                           weatherModel: state.weatherModel!,
                         )
                       ],

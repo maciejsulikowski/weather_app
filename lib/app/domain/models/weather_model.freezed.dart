@@ -555,8 +555,9 @@ DailyForecasts _$DailyForecastsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DailyForecasts {
   @JsonKey(name: "Date")
-  DateTime get date =>
-      throw _privateConstructorUsedError; // @JsonKey(name: "EpochDate") int epochDate,
+  DateTime get date => throw _privateConstructorUsedError;
+  @JsonKey(name: "EpochDate")
+  int get epochDate => throw _privateConstructorUsedError;
   @JsonKey(name: "Temperature")
   Temperature get temperature => throw _privateConstructorUsedError;
 
@@ -574,6 +575,7 @@ abstract class $DailyForecastsCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "Date") DateTime date,
+      @JsonKey(name: "EpochDate") int epochDate,
       @JsonKey(name: "Temperature") Temperature temperature});
 
   $TemperatureCopyWith<$Res> get temperature;
@@ -593,6 +595,7 @@ class _$DailyForecastsCopyWithImpl<$Res, $Val extends DailyForecasts>
   @override
   $Res call({
     Object? date = null,
+    Object? epochDate = null,
     Object? temperature = null,
   }) {
     return _then(_value.copyWith(
@@ -600,6 +603,10 @@ class _$DailyForecastsCopyWithImpl<$Res, $Val extends DailyForecasts>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      epochDate: null == epochDate
+          ? _value.epochDate
+          : epochDate // ignore: cast_nullable_to_non_nullable
+              as int,
       temperature: null == temperature
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
@@ -626,6 +633,7 @@ abstract class _$$DailyForecastsImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "Date") DateTime date,
+      @JsonKey(name: "EpochDate") int epochDate,
       @JsonKey(name: "Temperature") Temperature temperature});
 
   @override
@@ -644,6 +652,7 @@ class __$$DailyForecastsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? date = null,
+    Object? epochDate = null,
     Object? temperature = null,
   }) {
     return _then(_$DailyForecastsImpl(
@@ -651,6 +660,10 @@ class __$$DailyForecastsImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      null == epochDate
+          ? _value.epochDate
+          : epochDate // ignore: cast_nullable_to_non_nullable
+              as int,
       null == temperature
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
@@ -662,7 +675,9 @@ class __$$DailyForecastsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DailyForecastsImpl extends _DailyForecasts {
-  _$DailyForecastsImpl(@JsonKey(name: "Date") this.date,
+  _$DailyForecastsImpl(
+      @JsonKey(name: "Date") this.date,
+      @JsonKey(name: "EpochDate") this.epochDate,
       @JsonKey(name: "Temperature") this.temperature)
       : super._();
 
@@ -672,14 +687,16 @@ class _$DailyForecastsImpl extends _DailyForecasts {
   @override
   @JsonKey(name: "Date")
   final DateTime date;
-// @JsonKey(name: "EpochDate") int epochDate,
+  @override
+  @JsonKey(name: "EpochDate")
+  final int epochDate;
   @override
   @JsonKey(name: "Temperature")
   final Temperature temperature;
 
   @override
   String toString() {
-    return 'DailyForecasts(date: $date, temperature: $temperature)';
+    return 'DailyForecasts(date: $date, epochDate: $epochDate, temperature: $temperature)';
   }
 
   @override
@@ -688,13 +705,15 @@ class _$DailyForecastsImpl extends _DailyForecasts {
         (other.runtimeType == runtimeType &&
             other is _$DailyForecastsImpl &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.epochDate, epochDate) ||
+                other.epochDate == epochDate) &&
             (identical(other.temperature, temperature) ||
                 other.temperature == temperature));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, date, temperature);
+  int get hashCode => Object.hash(runtimeType, date, epochDate, temperature);
 
   @JsonKey(ignore: true)
   @override
@@ -712,7 +731,9 @@ class _$DailyForecastsImpl extends _DailyForecasts {
 }
 
 abstract class _DailyForecasts extends DailyForecasts {
-  factory _DailyForecasts(@JsonKey(name: "Date") final DateTime date,
+  factory _DailyForecasts(
+          @JsonKey(name: "Date") final DateTime date,
+          @JsonKey(name: "EpochDate") final int epochDate,
           @JsonKey(name: "Temperature") final Temperature temperature) =
       _$DailyForecastsImpl;
   _DailyForecasts._() : super._();
@@ -723,7 +744,10 @@ abstract class _DailyForecasts extends DailyForecasts {
   @override
   @JsonKey(name: "Date")
   DateTime get date;
-  @override // @JsonKey(name: "EpochDate") int epochDate,
+  @override
+  @JsonKey(name: "EpochDate")
+  int get epochDate;
+  @override
   @JsonKey(name: "Temperature")
   Temperature get temperature;
   @override
