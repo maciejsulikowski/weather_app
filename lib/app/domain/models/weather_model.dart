@@ -6,6 +6,7 @@ part 'weather_model.freezed.dart';
 
 @freezed
 class WeatherModel with _$WeatherModel {
+  const WeatherModel._();
   factory WeatherModel(
     @JsonKey(name: "Headline") Headline headline,
     @JsonKey(name: "DailyForecasts") List<DailyForecasts> dailyForecasts,
@@ -49,6 +50,14 @@ class DailyForecasts with _$DailyForecasts {
 
   String get dateFormatted {
     return DateFormat.yMMMMEEEEd().format(date);
+  }
+
+  String get dayShortFormatted {
+    return DateFormat.EEEE().format(date);
+  }
+
+  String get dateShortFormatted {
+    return DateFormat.yMMMd().format(date);
   }
 
   factory DailyForecasts.fromJson(Map<String, dynamic> json) =>

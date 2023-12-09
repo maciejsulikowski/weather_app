@@ -123,7 +123,9 @@ class WeatherWidget extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                         BasicInformationWeatherWidget(model: state.conditionsModel!,),
+                        BasicInformationWeatherWidget(
+                          model: state.conditionsModel!,
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -131,7 +133,9 @@ class WeatherWidget extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        const DaysWidget()
+                        DaysWidget(
+                          weatherModel: state.weatherModel!,
+                        )
                       ],
                     ),
                   ),

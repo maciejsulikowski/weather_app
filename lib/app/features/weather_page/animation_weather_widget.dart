@@ -92,7 +92,7 @@ class AnimationWeatherWidget extends StatelessWidget {
                 ),
               ),
             ),
-          if (temp < 0)
+          if (temp <= 0)
             Positioned(
               top: 70,
               left: 60,

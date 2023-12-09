@@ -126,12 +126,13 @@ class __$$WeatherModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$WeatherModelImpl implements _WeatherModel {
+class _$WeatherModelImpl extends _WeatherModel {
   _$WeatherModelImpl(
       @JsonKey(name: "Headline") this.headline,
       @JsonKey(name: "DailyForecasts")
       final List<DailyForecasts> dailyForecasts)
-      : _dailyForecasts = dailyForecasts;
+      : _dailyForecasts = dailyForecasts,
+        super._();
 
   factory _$WeatherModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherModelImplFromJson(json);
@@ -183,11 +184,12 @@ class _$WeatherModelImpl implements _WeatherModel {
   }
 }
 
-abstract class _WeatherModel implements WeatherModel {
+abstract class _WeatherModel extends WeatherModel {
   factory _WeatherModel(
       @JsonKey(name: "Headline") final Headline headline,
       @JsonKey(name: "DailyForecasts")
       final List<DailyForecasts> dailyForecasts) = _$WeatherModelImpl;
+  _WeatherModel._() : super._();
 
   factory _WeatherModel.fromJson(Map<String, dynamic> json) =
       _$WeatherModelImpl.fromJson;

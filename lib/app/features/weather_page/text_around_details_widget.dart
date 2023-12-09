@@ -19,7 +19,7 @@ class TextAroundDetailsWidget extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               )),
-          Text('7-days Weather',
+          Text('5-days Weather',
               style: GoogleFonts.aBeeZee(
                 fontSize: 16,
                 color: Colors.white,
